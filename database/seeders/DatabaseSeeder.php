@@ -31,6 +31,5 @@ class DatabaseSeeder extends Seeder
         Pedido::factory(8)->create();
         Categoria::factory(5)->create();
         $this->call(PlatoSeeder::class);
-
     }
 }
