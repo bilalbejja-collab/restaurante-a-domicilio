@@ -17,7 +17,7 @@ class CreateCategoriasTable extends Migration
             $table->id();
 
             $table->string('nombre');
-            $table->string('color');
+            $table->string('color')->nullable();
 
             $table->timestamps();
         });

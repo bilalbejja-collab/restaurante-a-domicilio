@@ -10,8 +10,9 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>DNI</th>
                             <th>Nombre</th>
+                            <th>Apellidos</th>
                             <th>Email</th>
                             <th></th>
                         </tr>
@@ -20,14 +21,17 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->dni }}</td>
+                                <td>{{ $user->nombre }}</td>
+                                <td>{{ $user->apellidos }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td width='10px'>
+
                                     @can('admin.users.index')
                                         <a class="btn btn-primary"
                                             href="{{ route('admin.users.edit', $user) }}">Editar</a>
                                     @endcan
+
                                 </td>
                             </tr>
                         @endforeach

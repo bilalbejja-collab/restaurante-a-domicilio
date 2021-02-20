@@ -9,7 +9,7 @@
 @section('title', 'Bilal')
 
 @section('content_header')
-    <h1>Bilal's Coding</h1>
+    <h1>Bilal's Code</h1>
 @stop
 
 @section('content')

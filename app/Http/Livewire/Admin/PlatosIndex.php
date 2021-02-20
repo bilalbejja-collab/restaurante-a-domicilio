@@ -2,12 +2,11 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\User;
+use App\Models\Plato;
 use Livewire\Component;
-
 use Livewire\WithPagination;
 
-class UsersIndex extends Component
+class PlatosIndex extends Component
 {
     use WithPagination;
 
@@ -22,11 +21,10 @@ class UsersIndex extends Component
 
     public function render()
     {
-        //15 por defecto
-        $users = User::where('dni', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('apellidos', 'LIKE', '%' . $this->search . '%')
+        $platos = Plato::where('nombre', 'LIKE', '%' . $this->search . '%')
+            ->latest('id')
             ->paginate(6);
 
-        return view('livewire.admin.users-index', compact('users'));
+        return view('livewire.admin.platos-index', compact('platos'));
     }
 }

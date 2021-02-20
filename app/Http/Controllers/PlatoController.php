@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Plato;
+use App\Models\Restaurante;
 use Illuminate\Http\Request;
 
 class PlatoController extends Controller
@@ -26,8 +27,14 @@ class PlatoController extends Controller
     }
 
     public function categoria(Categoria $categoria){
-        $categorias = Plato::where('categoria_id', $categoria->id)->latest('id')->paginate(6);
+        $platos = Plato::where('categoria_id', $categoria->id)->latest('id')->paginate(2);
 
-        return view('platos.categoria', compact('categorias'));
+        return view('platos.categoria', compact('platos', 'categoria'));
+    }
+
+    public function restaurante(Restaurante $restaurante){
+        $platos = Plato::where('restaurante_id', $restaurante->id)->latest('id')->paginate(2);
+
+        return view('platos.restaurante', compact('platos', 'restaurante'));
     }
 }

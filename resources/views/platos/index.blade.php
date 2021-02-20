@@ -6,12 +6,22 @@
                     url({{ url('storage/' . $plato->foto->url) }})">
                     <div class="w-full h-full px-8 flex flex-col justify-center">
                         <div>
-                            <a href=""
+                            Categoria:
+                            <a href="{{ route('platos.categoria', $plato->categoria) }}"
                                 class="inline-block px-3 h-6 bg-{{ $plato->categoria->color }}-600 text-white rounded-full">
                                 {{ $plato->categoria->nombre }}
                             </a>
                         </div>
-                        <h1 class="text-4xl text-white leading-8 font-bold">
+
+                        <div>
+                            Restaurante:
+                            <a href="{{ route('platos.restaurante', $plato->restaurante) }}"
+                                class="inline-block px-3 h-6 bg-{{ $plato->restaurante->color }}-600 text-white rounded-full">
+                                {{ $plato->restaurante->nombre }}
+                            </a>
+                        </div>
+
+                        <h1 class="text-4xl text-white leading-8 font-bold mt-2">
                             <a href="{{ route('platos.show', $plato) }}">
                                 {{ $plato->nombre }}
                             </a>

@@ -23,6 +23,8 @@ class CreateRestaurantesTable extends Migration
             $table->double('latitud');
             $table->double('longitud');
 
+            $table->string('color')->nullable();
+
             $table->timestamps();
         });
     }

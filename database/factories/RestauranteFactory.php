@@ -29,6 +29,12 @@ class RestauranteFactory extends Factory
             'telefono' => $this->faker->phoneNumber,
             'latitud' => $this->faker->latitude,
             'longitud' => $this->faker->longitude,
+
+            // Este campo lo he añadido para usarlo a la hora de pintar los platos, quiero que cada restaurante tendré un color aleatorio
+            'color' => $this->faker->randomElement([
+                'red', 'yellow', 'green', 'blue', 'indigo', 'purpule', 'pink'
+            ]),
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ];

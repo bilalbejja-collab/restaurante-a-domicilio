@@ -12,6 +12,15 @@ class UserController extends Controller
 {
     use WithPagination;
 
+    /**
+     * Protección de rutas
+     */
+    public function constuct()
+    {
+        $this->middleware('can:admin.users.index')->only('index');
+        $this->middleware('can:admin.users.edit')->only('edit', 'update');
+    }
+
     public function index()
     {
         return view('admin.users.index');
@@ -31,5 +40,4 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.edit', $user)->with('info', 'Se asigno los roles correctamente.');
     }
-
 }

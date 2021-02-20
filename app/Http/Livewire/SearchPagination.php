@@ -24,6 +24,6 @@ class SearchPagination extends Component
             ->orWhere('email', 'LIKE', '%' . $this->search . '%')
             ->paginate(6);
 
-        return view('livewire.admin.users-index', compact('users'));
-        */
+    return view('livewire.admin.users-index', compact('users'));
+    */
 }

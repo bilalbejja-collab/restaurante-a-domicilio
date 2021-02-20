@@ -1,39 +1,43 @@
 <?php
 
 $menu = [
+    [
+        'text'        => 'Dashboard',
+        'url'         => '/',
+        'icon'        => 'fas fa-tachometer-alt fa-fw',
+        //'can' => 'admin.home',
+    ],
 
     ['header' => 'ADMINISTRADOR'],
 
     [
-        'text'        => 'Dashboard',
-        'url'         => 'dashboard',
-        'icon'        => 'fas fa-tachometer-alt fa-fw',
-        'active' =>  ['admin/home'],
-        //'can' => 'admin.home',
-    ],
-    [
         'text'        => 'Users',
         'url'         => 'users',
         'icon'        => 'fas fa-users fa-fw',
-        'active' =>  ['admin/users'],
+        'active' =>  ['admin/users*'],
         //'can' => 'admin.users.index',
-
     ],
     [
-        'text'        => 'Categorias',
-        'url'         => 'categorias.index',
-        'icon'        => 'fas fa-users fa-fw',
-        'active' =>  ['admin/categorias'],
-        'can' => 'admin.categories.index',
+        'text'        => 'Categorías',
+        'route'         => 'admin.categorias.index',
+        'icon'        => 'fab fa-fw fa-buffer',
+        'active' =>  ['admin/categorias*'],
+        //'can' => 'admin.categories.index',
     ],
     [
         'text'        => 'Restaurantes',
-        'url'         => 'categorias.index',
-        'icon'        => 'fas fa-users fa-fw',
-        'active' =>  ['admin/categorias'],
-        'can' => 'admin.posts.index',
+        'route'         => 'admin.restaurantes.index',
+        'icon'        => 'fas fa-fw fa-home',
+        'active' =>  ['admin/restaurantes*'],
+        //'can' => 'admin.restaurantes.index',
     ],
-
+    [
+        'text'        => 'Platos',
+        'route'         => 'admin.platos.index',
+        'icon'        => 'fas fa-fw fa-utensils',
+        'active' =>  ['admin/platos*'],
+        //'can' => 'admin.platos.index',
+    ],
 
 ];
 
@@ -122,7 +126,7 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
+    'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
 
@@ -224,7 +228,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'dashboard',
+    'dashboard_url' => 'admin',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -380,5 +384,5 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/9.-Other-Configuration
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

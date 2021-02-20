@@ -16,7 +16,7 @@ class PlatoSeeder extends Seeder
      */
     public function run()
     {
-        $platos = Plato::factory(10)->create();
+        $platos = Plato::factory(20)->create();
 
         foreach ($platos as $plato) {
             Image::factory(1)->create([
