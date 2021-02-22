@@ -1,37 +1,39 @@
 <div>
     <div class="card">
         <div class="card-header">
-            <input wire:model="search" class="form-control" type="text" placeholder="Ingrese el nombre de un plato">
+            <input wire:model="search" class="form-control" type="text" placeholder="Ingrese el nombre de un repartidor">
         </div>
 
-        @if ($platos->count())
+        @if ($repartidores->count())
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>CategoriaID</th>
-                            <th>RestauranteID</th>
+                            <th>Apellidos</th>
+                            <th>Teléfono</th>
+                            <th>Salario</th>
+                            <th>Estado</th>
                             <th colspan="2"></th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach ($platos as $plato)
+                        @foreach ($repartidores as $repartidor)
                             <tr>
-                                <td>{{ $plato->id }}</td>
-                                <td>{{ $plato->nombre }}</td>
-                                <td>{{ $plato->precio }}</td>
-                                <td>{{ $plato->categoria_id }}</td>
-                                <td>{{ $plato->restaurante_id }}</td>
+                                <td>{{ $repartidor->id }}</td>
+                                <td>{{ $repartidor->nombre }}</td>
+                                <td>{{ $repartidor->apellidos }}</td>
+                                <td>{{ $repartidor->telefono }}</td>
+                                <td>{{ $repartidor->salario }}</td>
+                                <td>{{ $repartidor->estado }}</td>
                                 <td width="10px">
                                     <a class="btn btn-primary btn-sm"
-                                        href="{{ route('admin.platos.edit', $plato) }}">Editar</a>
+                                        href="{{ route('admin.repartidores.edit', $repartidor) }}">Editar</a>
                                 </td>
                                 <td width="10px">
-                                    <form action="{{ route('admin.platos.destroy', $plato) }}" method="POST">
+                                    <form action="{{ route('admin.repartidores.destroy', $repartidor) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
 
@@ -45,7 +47,7 @@
             </div>
 
             <div class="card-footer">
-                {{ $platos->links() }}
+                {{ $repartidores->links() }}
             </div>
         @else
             <div class="card-body">

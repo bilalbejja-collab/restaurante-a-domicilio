@@ -38,6 +38,20 @@ $menu = [
         'active' =>  ['admin/platos*'],
         //'can' => 'admin.platos.index',
     ],
+    [
+        'text'        => 'Repartidores',
+        'route'         => 'admin.repartidores.index',
+        'icon'        => 'fas fa-fw fa-truck',
+        'active' =>  ['admin/repartidores*'],
+        //'can' => 'admin.repartidores.index',
+    ],
+    [
+        'text'        => 'Pedidos',
+        'route'         => 'admin.pedidos.index',
+        'icon'        => 'fas fa-fw fa-clipboard',
+        'active' =>  ['admin/pedidos*'],
+        //'can' => 'admin.pedidos.index',
+    ],
 
 ];
 

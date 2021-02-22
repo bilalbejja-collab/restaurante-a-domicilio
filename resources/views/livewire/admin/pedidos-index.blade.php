@@ -1,37 +1,35 @@
 <div>
     <div class="card">
         <div class="card-header">
-            <input wire:model="search" class="form-control" type="text" placeholder="Ingrese el nombre de un plato">
+            <input wire:model="search" class="form-control" type="text" placeholder="Ingrese el estado del pedido">
         </div>
 
-        @if ($platos->count())
+        @if ($pedidos->count())
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>CategoriaID</th>
+                            <th>Estado</th>
                             <th>RestauranteID</th>
+                            <th>RepartidorID</th>
                             <th colspan="2"></th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach ($platos as $plato)
+                        @foreach ($pedidos as $pedido)
                             <tr>
-                                <td>{{ $plato->id }}</td>
-                                <td>{{ $plato->nombre }}</td>
-                                <td>{{ $plato->precio }}</td>
-                                <td>{{ $plato->categoria_id }}</td>
-                                <td>{{ $plato->restaurante_id }}</td>
+                                <td>{{ $pedido->id }}</td>
+                                <td>{{ $pedido->estado }}</td>
+                                <td>{{ $pedido->restaurante_id }}</td>
+                                <td>{{ $pedido->repartidor_id }}</td>
                                 <td width="10px">
                                     <a class="btn btn-primary btn-sm"
-                                        href="{{ route('admin.platos.edit', $plato) }}">Editar</a>
+                                        href="{{ route('admin.pedidos.edit', $pedido) }}">Editar</a>
                                 </td>
                                 <td width="10px">
-                                    <form action="{{ route('admin.platos.destroy', $plato) }}" method="POST">
+                                    <form action="{{ route('admin.pedidos.destroy', $pedido) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
 
@@ -45,7 +43,7 @@
             </div>
 
             <div class="card-footer">
-                {{ $platos->links() }}
+                {{ $pedidos->links() }}
             </div>
         @else
             <div class="card-body">

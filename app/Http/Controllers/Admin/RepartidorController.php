@@ -15,7 +15,9 @@ class RepartidorController extends Controller
      */
     public function index()
     {
-        //
+        $repartidores = Repartidor::all();
+
+        return view('admin.repartidores.index', compact('repartidores'));
     }
 
     /**
@@ -41,7 +43,17 @@ class RepartidorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'apellidos' => 'required|unique:repartidores',
+            'telefono' => 'required|numeric',
+            'salario' => 'required|numeric|not_in:0',
+            'estado' => 'required'
+        ]);
+
+        $repartidor = Repartidor::create($request->all());
+
+        return redirect()->route('admin.repartidores.edit', $repartidor)->with('info', 'El repartidor se creó con éxito');
     }
 
     /**
@@ -52,7 +64,7 @@ class RepartidorController extends Controller
      */
     public function show(Repartidor $repartidor)
     {
-        //
+        return view('admin.repartidores.show', compact('repartidor'));
     }
 
     /**
@@ -61,9 +73,14 @@ class RepartidorController extends Controller
      * @param  \App\Models\Repartidor  $repartidor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Repartidor $repartidor)
+    public function edit(Repartidor $repartidore)
     {
-        //
+        $estados = [
+            'libre' => 'Estado libre',
+            'ocupado' => 'Estado ocupado'
+        ];
+
+        return view('admin.repartidores.edit', compact('repartidore', 'estados'));
     }
 
     /**
@@ -73,9 +90,19 @@ class RepartidorController extends Controller
      * @param  \App\Models\Repartidor  $repartidor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Repartidor $repartidor)
+    public function update(Request $request, Repartidor $repartidore)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'apellidos' => "required|unique:repartidores,apellidos,$repartidore->apellidos",
+            'telefono' => 'required|numeric',
+            'salario' => 'required|numeric|not_in:0',
+            'estado' => 'required'
+        ]);
+
+        $repartidore->update($request->all());
+
+        return redirect()->route('admin.repartidores.edit', $repartidore)->with('info', 'El repartidor se actualizó con éxito');
     }
 
     /**
@@ -84,8 +111,10 @@ class RepartidorController extends Controller
      * @param  \App\Models\Repartidor  $repartidor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Repartidor $repartidor)
+    public function destroy(Repartidor $repartidore)
     {
-        //
+        $repartidore->delete();
+
+        return redirect(route('admin.repartidores.index'))->with('info', 'El repartidor se eliminó con éxito');
     }
 }

@@ -9,6 +9,14 @@ class Repartidor extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nombre',
+        'apellidos',
+        'telefono',
+        'salario',
+        'estado',
+    ];
+
     protected $table = 'repartidores';
 
     //Relation Uno a Muchos

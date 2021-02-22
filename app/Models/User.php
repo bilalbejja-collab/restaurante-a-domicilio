@@ -11,7 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Role;
 
-//AÑADIDA POR BILAL
+// uso de Spatie
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -21,7 +21,8 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    //AÑADIDA POR BILAL
+
+    // uso de Spatie
     use HasRoles;
 
     /**
@@ -71,8 +72,8 @@ class User extends Authenticatable
     ];
 
     //Relation Uno a Muchos
-    public function pedidos(){
+    public function pedidos()
+    {
         return $this->hasMany(Pedido::class);
     }
-
 }

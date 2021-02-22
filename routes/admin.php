@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\CategoriaController;
+use App\Http\Controllers\Admin\PedidoController;
 use App\Http\Controllers\Admin\RestauranteController;
 use App\Http\Controllers\Admin\PlatoController;
+use App\Http\Controllers\Admin\RepartidorController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
 
@@ -16,4 +18,10 @@ Route::resource('categorias', CategoriaController::class)->except('show')->names
 Route::resource('restaurantes', RestauranteController::class)->names('admin.restaurantes');
 
 Route::resource('platos', PlatoController::class)->names('admin.platos');
+
+Route::resource('repartidores', RepartidorController::class)->names('admin.repartidores');
+
+Route::resource('pedidos', PedidoController::class)->names('admin.pedidos');
+
+
 

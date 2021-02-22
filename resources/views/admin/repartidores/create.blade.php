@@ -1,29 +1,21 @@
-<!--
-<div class="form-group">
-    <label for="">Estado:</label>
+@extends('adminlte::page')
 
-    <select name="estado" id="" class="form-control">
-        <option value="libre">Libre</option>
-        <option value="ocupado">Ocupado</option>
-    </select>
-</div>
+@section('title', 'Restaurante a domicilio')
 
-//Lo usare en pedidos
-{!! Form::hidden('user_id', auth()->user()->id()) !!}
--->
-<div class="form-group">
-    {!! Form::label('estado', 'Estado') !!}
-    {!! Form::select('estado', $estados, $selected, ['class' => 'form-control']) !!}
-</div>
+@section('content_header')
+    <h1>Crear nuevo repartidor</h1>
+@stop
 
+@section('content')
+    <div class="card">
+        <div class="card-body">
+            {!! Form::open(['route' => 'admin.repartidores.store']) !!}
 
-<div class="form-group">
-                    <p class="font-weight-bold">Restaurantes</p>
+            @include('admin.repartidores.partials.form')
 
-                    @foreach ($restaurantes as $restaurante)
-                        <label class="mr-2">
-                            {!! Form::checkbox('restaurantes[]', $restaurante->id, null) !!}
-                            {{$restaurante->nombre}}
-                        </label>
-                    @endforeach
-                </div>
+            {!! Form::submit('Crear repartidor', ['class' => 'btn btn-primary']) !!}
+
+            {!! Form::close() !!}
+        </div>
+    </div>
+@endsection

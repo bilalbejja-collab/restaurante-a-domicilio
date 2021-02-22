@@ -3,7 +3,7 @@
 @section('title', 'Restaurante a domicilio')
 
 @section('content_header')
-    <h1>Crear Nueva Categoría</h1>
+    <h1>Crear nueva categoría</h1>
 @stop
 
 @section('content')

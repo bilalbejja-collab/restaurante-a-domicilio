@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Pedido;
 use Illuminate\Support\ServiceProvider;
 
 use App\Models\Plato;
+use App\Observers\PedidoObserver;
 use App\Observers\PlatoObserver;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +29,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // registrar el observer que hemos creado
-        Plato::observe(PlatoObserver::class);
     }
 }

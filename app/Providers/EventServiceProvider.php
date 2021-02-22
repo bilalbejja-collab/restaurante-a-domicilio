@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Pedido;
+use App\Models\Plato;
+use App\Observers\PedidoObserver;
+use App\Observers\PlatoObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,6 +31,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+        // cuando se borra un plato me borra la imagen asociada a ese
+        Plato::observe(PlatoObserver::class);
     }
 }

@@ -6,7 +6,7 @@
     @endrole
 @stop
 
-@section('title', 'Bilal')
+@section('title', 'Restaurante a domicilio')
 
 @section('content_header')
     <h1>Bilal's Code</h1>

@@ -2,12 +2,11 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\User;
+use App\Models\Pedido;
 use Livewire\Component;
-
 use Livewire\WithPagination;
 
-class UsersIndex extends Component
+class PedidosIndex extends Component
 {
     use WithPagination;
 
@@ -22,12 +21,11 @@ class UsersIndex extends Component
 
     public function render()
     {
-        //15 por defecto
-        $users = User::where('dni', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('nombre', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('apellidos', 'LIKE', '%' . $this->search . '%')
+        $pedidos = Pedido::where('user_id', auth()->user()->id)
+            ->where('estado', 'LIKE', '%' . $this->search . '%')
+            ->latest('id')
             ->paginate(6);
 
-        return view('livewire.admin.users-index', compact('users'));
+        return view('livewire.admin.pedidos-index', compact('pedidos'));
     }
 }
