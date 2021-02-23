@@ -3,6 +3,13 @@
 @section('title', 'Restaurante a domicilio')
 
 @section('content_header')
+
+    @can('admin.categorias.create')
+        <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.categorias.create') }}">
+            Añadir categoría
+        </a>
+    @endcan
+
     <h1>Lista de categorías</h1>
 @stop
 
@@ -17,11 +24,6 @@
     @endif
 
     <div class="card">
-        <div class="card-header">
-            <a class="btn btn-secondary" href="{{ route('admin.categorias.create') }}">
-                Añadir categoría
-            </a>
-        </div>
 
         <div class="card-body">
             <table class="table table-striped">

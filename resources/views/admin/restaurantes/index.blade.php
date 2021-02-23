@@ -3,9 +3,12 @@
 @section('title', 'Restaurante a domicilio')
 
 @section('content_header')
-    <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.restaurantes.create') }}">
-        Nueva restaurante
-    </a>
+
+    @can('admin.restaurantes.create')
+        <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.restaurantes.create') }}">
+            Nueva restaurante
+        </a>
+    @endcan
 
     <h1>Mostrar listado de restaurantes</h1>
 @stop
@@ -44,20 +47,28 @@
                             <td>{{ $restaurante->latitud }}</td>
                             <td>{{ $restaurante->longitud }}</td>
                             <td width="10px">
-                                <a class="btn btn-primary btn-sm"
-                                    href="{{ route('admin.restaurantes.edit', $restaurante->id) }}">
-                                    Editar
-                                </a>
+
+                                @can('admin.restaurantes.edit')
+                                    <a class="btn btn-primary btn-sm"
+                                        href="{{ route('admin.restaurantes.edit', $restaurante->id) }}">
+                                        Editar
+                                    </a>
+                                @endcan
+
                             </td>
                             <td width="10px">
-                                <form action="{{ route('admin.restaurantes.destroy', $restaurante) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
 
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        Eliminar
-                                    </button>
-                                </form>
+                                @can('admin.restaurantes.destroy')
+                                    <form action="{{ route('admin.restaurantes.destroy', $restaurante) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                @endcan
+
                             </td>
                         </tr>
                     @endforeach

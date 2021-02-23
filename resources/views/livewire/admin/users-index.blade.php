@@ -5,6 +5,7 @@
                 placeholder="Ingrese el nombre o correo de un usuario">
         </div>
 
+        {{--Comprobar que hay registros--}}
         @if ($users->count())
             <div class="card-body">
                 <table class="table table-striped">

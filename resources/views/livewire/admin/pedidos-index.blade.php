@@ -25,16 +25,24 @@
                                 <td>{{ $pedido->restaurante_id }}</td>
                                 <td>{{ $pedido->repartidor_id }}</td>
                                 <td width="10px">
-                                    <a class="btn btn-primary btn-sm"
-                                        href="{{ route('admin.pedidos.edit', $pedido) }}">Editar</a>
+
+                                    @can('admin.pedidos.edit')
+                                        <a class="btn btn-primary btn-sm"
+                                            href="{{ route('admin.pedidos.edit', $pedido) }}">Editar</a>
+                                    @endcan
+
                                 </td>
                                 <td width="10px">
-                                    <form action="{{ route('admin.pedidos.destroy', $pedido) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
 
-                                        <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
-                                    </form>
+                                    @can('admin.pedidos.destroy')
+                                        <form action="{{ route('admin.pedidos.destroy', $pedido) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                        </form>
+                                    @endcan
+
                                 </td>
                             </tr>
                         @endforeach

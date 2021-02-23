@@ -31,6 +31,10 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // cuando se crea un pedido se le asigna el id del usuario autenticado
+        Pedido::observe(PedidoObserver::class);
+
+
 
         // cuando se borra un plato me borra la imagen asociada a ese
         Plato::observe(PlatoObserver::class);

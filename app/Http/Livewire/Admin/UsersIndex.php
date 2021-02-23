@@ -16,7 +16,8 @@ class UsersIndex extends Component
     protected $paginationTheme = 'bootstrap';
 
     // Para que el buscador busque en todas las páginas
-    public function updatingSearch(){
+    public function updatingSearch()
+    {
         $this->resetPage();
     }
 

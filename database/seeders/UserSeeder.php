@@ -23,8 +23,8 @@ class UserSeeder extends Seeder
             'ciudad' => 'Cuevas del Almanzora',
             'telefono' => '63233544',
             'password' => bcrypt('12345678')
-        ]);
+        ])->assignRole('Admin');
 
-        //User::factory(99)->create();
+        User::factory(10)->create();
     }
 }
