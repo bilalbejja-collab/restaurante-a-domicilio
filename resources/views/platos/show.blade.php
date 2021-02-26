@@ -21,14 +21,12 @@
 
                 <!-- Carrito de compra -->
 
-
-
                 <form action="{{ route('cart.add') }}" method="POST">
                     @csrf
 
                     <input type="hidden" name="plato_id" value="{{ $plato->id }}">
 
-                    <div class="inline-block mr-2 mt-2">
+                    <div class="inline-block mr-2 mt-4">
                         <button type="submit"
                             class="text-white text-sm py-2.5 px-5 rounded-md bg-gray-700 hover:bg-gray-900 hover:shadow-lg">
                             Añadir al pedido {{ $plato->precio }}€
