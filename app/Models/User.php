@@ -9,10 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Role;
-
 // uso de Spatie
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
 
 class User extends Authenticatable
 {
@@ -75,5 +74,18 @@ class User extends Authenticatable
     public function pedidos()
     {
         return $this->hasMany(Pedido::class);
+    }
+
+    // Genera un imagen aleatoria
+    public function adminlte_image(){
+        return 'https://picsum.photos/300/300';
+    }
+
+    public function adminlte_desc(){
+        return 'ADMIN';
+    }
+
+    public function adminlte_profile_url(){
+        return 'ADMIN';
     }
 }

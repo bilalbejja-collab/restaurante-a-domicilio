@@ -12,7 +12,7 @@ class CategoriaController extends Controller
     /**
      * Protección de rutas
      */
-    public function constuct()
+    public function __construct()
     {
         $this->middleware('can:admin.categorias.index')->only('index');
         $this->middleware('can:admin.categorias.create')->only('create', 'store');
@@ -58,19 +58,6 @@ class CategoriaController extends Controller
 
         return redirect()->route('admin.categorias.edit', $categoria)->with('info', 'La categoría se creó con éxito');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    /*
-    public function show($categoria)
-    {
-        return view('admin.categorias.show', compact('categoria'));
-    }
-    */
 
     /**
      * Show the form for editing the specified resource.

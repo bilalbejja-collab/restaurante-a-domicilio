@@ -23,8 +23,8 @@
                     </div>
 
                     <div class="px-6 pt-4 pb-2">
-                        <a href="" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700">
-                            {!! $plato->categoria->nombre !!}
+                        <a href="{{ route('platos.restaurante', $plato->restaurante) }}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700">
+                            {!! $plato->restaurante->nombre !!}
                         </a>
                     </div>
                 </div>

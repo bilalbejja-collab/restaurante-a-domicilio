@@ -19,9 +19,27 @@
                     @endif
                 </figure>
 
-                <div class="text-base text-gray-500 mb-2">
+                <!-- Carrito de compra -->
+
+
+
+                <form action="{{ route('cart.add') }}" method="POST">
+                    @csrf
+
+                    <input type="hidden" name="plato_id" value="{{ $plato->id }}">
+
+                    <div class="inline-block mr-2 mt-2">
+                        <button type="submit"
+                            class="text-white text-sm py-2.5 px-5 rounded-md bg-gray-700 hover:bg-gray-900 hover:shadow-lg">
+                            Añadir al pedido {{ $plato->precio }}€
+                        </button>
+                    </div>
+                </form>
+
+                <div class="text-base text-gray-500 mt-4">
                     {!! $plato->descripcion !!}
                 </div>
+
             </div>
 
             {{-- Conetenido relacionado --}}
@@ -33,10 +51,10 @@
                             <a class="flex" href="{{ route('platos.show', $similar) }}">
 
                                 @if ($similar->foto)
-                                    <img class="w-full h-50 object-cover object-center"
+                                    <img class="w-36 h-20 object-cover object-center"
                                         src="{{ url('storage/' . $similar->foto->url) }}" alt="">
                                 @else
-                                    <img class="w-full h-80 object-cover object-center"
+                                    <img class="w-36 h-20 object-cover object-center"
                                         src="https://cdn.pixabay.com/photo/2021/02/06/19/29/pancakes-5989136_1280.jpg"
                                         alt="">
                                 @endif

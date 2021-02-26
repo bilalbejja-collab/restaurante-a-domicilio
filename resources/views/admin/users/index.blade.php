@@ -1,10 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Users')
-
-@section('content_header')
-    <h1>Bilal's Coding</h1>
-@stop
+@section('title', 'Restaurante a domicilio')
 
 @section('content')
 

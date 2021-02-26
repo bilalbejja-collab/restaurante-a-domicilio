@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class RepartidorController extends Controller
 {
-   /**
+    /**
      * Protección de rutas
      */
     public function __construct()
@@ -21,6 +20,11 @@ class RepartidorController extends Controller
         $this->middleware('can:admin.repartidores.destroy')->only('destroy');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $repartidores = User::role('Repartidor')->get();
@@ -28,6 +32,11 @@ class RepartidorController extends Controller
         return view('admin.repartidores.index', compact('repartidores'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $estados = [
@@ -38,30 +47,33 @@ class RepartidorController extends Controller
         return view('admin.repartidores.create', compact('estados'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $request->validate([
-            'dni' => 'required|unique:users',
-            'nombre' => 'required',
-            'apellidos' => 'required|unique:users',
-            'email' => 'required|unique:users',
-            'direccion' => 'required',
-            'ciudad' => 'required',
-            'telefono' => 'required|numeric',
-            // minimo 5 si es por hora
-            'salario' => 'required|numeric|min:5',
-            'estado' => 'required',
-            'password' => 'required'
+            'name' => 'required',
+            'lastname' => 'required|unique:repartidores',
+            'movil' => 'required|numeric',
+            'salario' => 'required|numeric|not_in:0',
+            'estado' => 'required'
         ]);
 
-        // Hash la contraseña
-        $request['password'] = Hash::make($request['password']);
-
-        $repartidor = User::create($request->all())->assignRole('Repartidor');
+        $repartidor = User::create($request->all());
 
         return redirect()->route('admin.repartidores.edit', $repartidor)->with('info', 'El repartidor se creó con éxito');
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Repartidor  $repartidor
+     * @return \Illuminate\Http\Response
+     */
     public function edit(User $repartidore)
     {
         $estados = [
@@ -72,29 +84,34 @@ class RepartidorController extends Controller
         return view('admin.repartidores.edit', compact('repartidore', 'estados'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Repartidor  $repartidor
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, User $repartidore)
     {
         $request->validate([
-            'dni' => "required|unique:users,dni,$repartidore->dni",
-            'nombre' => 'required',
-            'apellidos' => "required|unique:users,apellidos,$repartidore->apellidos",
-            'email' => "required|unique:users,email,$repartidore->email",
-            'direccion' => 'required',
-            'ciudad' => 'required',
-            'telefono' => 'required|numeric',
+            'name' => 'required',
+            'lastname' => "required|unique:repartidores,apellidos,$repartidore->lastname",
+            'movil' => 'required|numeric',
             'salario' => 'required|numeric|not_in:0',
-            'estado' => 'required',
-            'password' => 'required'
+            'estado' => 'required'
         ]);
-
-        // Hash la contraseña
-        $request['password'] = Hash::make($request['password']);
 
         $repartidore->update($request->all());
 
         return redirect()->route('admin.repartidores.edit', $repartidore)->with('info', 'El repartidor se actualizó con éxito');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Repartidor  $repartidor
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(User $repartidore)
     {
         $repartidore->delete();

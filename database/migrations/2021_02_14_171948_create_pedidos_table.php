@@ -23,7 +23,7 @@ class CreatePedidosTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('restaurante_id')->references('id')->on('restaurantes')->onDelete('cascade');
-            $table->foreign('repartidor_id')->references('id')->on('repartidores')->onDelete('cascade');
+            $table->foreign('repartidor_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

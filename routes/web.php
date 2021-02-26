@@ -2,12 +2,22 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\PlatoController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [PlatoController::class, 'index'])->name('platos.index');
+
+
+Route::post('/cart-add', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart-checkout', [CartController::class, 'cart'])->name('cart.checkout');
+Route::post('/cart-clear', [CartController::class, 'clear'])->name('cart.clear');
+Route::post('/cart-removeitem', [CartController::class, 'removeitem'])->name('cart.removeitem');
+
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/', [PlatoController::class, 'index'])->name('platos.index');
 
 Route::get('platos/{plato}', [PlatoController::class, 'show'])->name('platos.show');
 

@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 class RestauranteController extends Controller
 {
     /**
+     * Protección de rutas
+     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.restaurantes.index')->only('index');
+        $this->middleware('can:admin.restaurantes.create')->only('create', 'store');
+        $this->middleware('can:admin.restaurantes.edit')->only('edit', 'update');
+        $this->middleware('can:admin.restaurantes.destroy')->only('destroy');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -47,17 +58,6 @@ class RestauranteController extends Controller
         $restaurante = Restaurante::create($request->all());
 
         return redirect()->route('admin.restaurantes.edit', $restaurante)->with('info', 'La restaurante se creó con éxito');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Restaurante  $restaurante
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Restaurante $restaurante)
-    {
-        return view('admin.restaurantes.show', compact('restaurante'));
     }
 
     /**

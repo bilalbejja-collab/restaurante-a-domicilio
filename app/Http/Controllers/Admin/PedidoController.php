@@ -12,6 +12,17 @@ use Illuminate\Http\Request;
 class PedidoController extends Controller
 {
     /**
+     * Protección de rutas
+     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.pedidos.index')->only('index');
+        $this->middleware('can:admin.pedidos.create')->only('create', 'store');
+        $this->middleware('can:admin.pedidos.edit')->only('edit', 'update');
+        $this->middleware('can:admin.pedidos.destroy')->only('destroy');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -55,17 +66,6 @@ class PedidoController extends Controller
         $pedido = Pedido::create($request->all());
 
         return redirect()->route('admin.pedidos.edit', $pedido)->with('info', 'El pedido se creó con éxito');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pedido  $pedido
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pedido $pedido)
-    {
-        return view('admin.pedidos.show', compact('pedido'));
     }
 
     /**

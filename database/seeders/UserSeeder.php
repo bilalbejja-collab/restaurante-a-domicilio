@@ -16,14 +16,25 @@ class UserSeeder extends Seeder
     {
         User::create([
             'dni' => '45081700W',
-            'nombre' => 'Bilal',
-            'apellidos' => 'Bejja',
+            'name' => 'Bilal',
+            'lastname' => 'Bejja',
             'email' => 'bilalbejja2016@gmail.com',
-            'direccion' => 'Crta de águilas',
-            'ciudad' => 'Cuevas del Almanzora',
-            'telefono' => '63233544',
+            'address' => 'Crta de águilas',
+            'city' => 'Cuevas del Almanzora',
+            'movil' => '63233544',
             'password' => bcrypt('12345678')
         ])->assignRole('Admin');
+
+        User::create([
+            'dni' => 'E8798712W',
+            'name' => 'Repartidor',
+            'lastname' => 'Repartidor',
+            'email' => 'repartidor@gmail.com',
+            'address' => 'Crta de águilas',
+            'city' => 'Cuevas del Almanzora',
+            'movil' => '897454654',
+            'password' => bcrypt('12345678')
+        ])->assignRole('Repartidor');
 
         User::factory(10)->create();
     }

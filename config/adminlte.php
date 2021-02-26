@@ -69,9 +69,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => '',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => '| BB',
 
     /*
     |--------------------------------------------------------------------------
@@ -100,12 +100,12 @@ return [
     |
     */
 
-    'logo' => 'Administración',
+    'logo' => '<b>Administración</b>',
     'logo_img' => 'img/logo.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'bb logo',
+    'logo_img_alt' => 'BB',
 
     /*
     |--------------------------------------------------------------------------
@@ -120,7 +120,7 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
@@ -141,7 +141,7 @@ return [
     'layout_topnav' => null,
     'layout_boxed' => null,
     'layout_fixed_sidebar' => true,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
 
     /*

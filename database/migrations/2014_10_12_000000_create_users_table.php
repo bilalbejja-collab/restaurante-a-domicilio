@@ -17,12 +17,17 @@ class CreateUsersTable extends Migration
             $table->id();
 
             $table->string('dni')->unique();
-            $table->string('nombre');
-            $table->string('apellidos');
+            $table->string('name');
+            $table->string('lastname');
             $table->string('email');
-            $table->string('direccion');
-            $table->string('ciudad');
-            $table->string('telefono');
+            $table->string('address');
+            $table->string('city');
+            $table->string('movil');
+
+            // En caso de repartidor
+            $table->double('salario')->nullable();
+            $table->string('estado')->nullable();
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

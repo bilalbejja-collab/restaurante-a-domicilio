@@ -16,7 +16,7 @@ class UserController extends Controller
     /**
      * Protección de rutas
      */
-    public function constuct()
+    public function __construct()
     {
         $this->middleware('can:admin.users.index')->only('index');
         $this->middleware('can:admin.users.edit')->only('edit', 'update');
@@ -27,6 +27,12 @@ class UserController extends Controller
         return view('admin.users.index');
     }
 
+    public function repartidores()
+    {
+        $repartidores = User::role('Repartidor')->get();
+        //return $repartidores;
+        return view('admin.repartidores.index', compact('repartidores'));
+    }
 
     public function edit(User $user)
     {

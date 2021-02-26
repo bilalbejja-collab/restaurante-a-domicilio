@@ -12,16 +12,17 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
 
-Route::get('', [HomeController::class, "index"])->name('admin.home');
+// Al panel de administración solo puede acceder: admin, repartidor o grestaurante
+Route::get('', [HomeController::class, "index"])->middleware('can:admin.home')->name('admin.home');
 
 Route::resource('users', UserController::class)->only('index', 'edit', 'update')->names('admin.users');
 
 Route::resource('categorias', CategoriaController::class)->except('show')->names('admin.categorias');
 
-Route::resource('restaurantes', RestauranteController::class)->names('admin.restaurantes');
+Route::resource('restaurantes', RestauranteController::class)->except('show')->names('admin.restaurantes');
 
-Route::resource('platos', PlatoController::class)->names('admin.platos');
+Route::resource('platos', PlatoController::class)->except('show')->names('admin.platos');
 
-Route::resource('repartidores', RepartidorController::class)->names('admin.repartidores');
+Route::resource('repartidores', RepartidorController::class)->except('show')->names('admin.repartidores');
 
-Route::resource('pedidos', PedidoController::class)->names('admin.pedidos');
+Route::resource('pedidos', PedidoController::class)->except('show')->names('admin.pedidos');

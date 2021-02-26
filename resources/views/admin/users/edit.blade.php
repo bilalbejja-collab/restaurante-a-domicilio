@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Bilal\'s code')
+@section('title', 'Restaurante a domicilio')
 
 @section('content_header')
     <h1>Asignar rol</h1>
@@ -17,7 +17,7 @@
     <div class="card">
         <div class="card-body">
             <p class="h5">Nombre:</p>
-            <p class="form-control">{{ $user->name }}</p>
+            <p class="form-control">{{ $user->nombre }} {{ $user->apellidos }}</p>
 
             <h2 class="h5">Listado de roles</h2>
             {!! Form::model($user, [

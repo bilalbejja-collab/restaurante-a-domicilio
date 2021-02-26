@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Storage;
 class PlatoController extends Controller
 {
     /**
+     * Protección de rutas
+     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.platos.index')->only('index');
+        $this->middleware('can:admin.platos.create')->only('create', 'store');
+        $this->middleware('can:admin.platos.edit')->only('edit', 'update');
+        $this->middleware('can:admin.platos.destroy')->only('destroy');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -67,17 +78,6 @@ class PlatoController extends Controller
         }
 
         return redirect()->route('admin.platos.edit', $plato)->with('info', 'El plato se creó con éxito');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Plato  $plato
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Plato $plato)
-    {
-        return view('admin.platos.show', compact('plato'));
     }
 
     /**
