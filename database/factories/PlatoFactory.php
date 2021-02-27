@@ -26,7 +26,7 @@ class PlatoFactory extends Factory
     {
         return [
             'nombre' => $this->faker->word(50),
-            'descripcion' => $this->faker->text(2000),
+            'descripcion' => $this->faker->text(500),
             'precio' => $this->faker->numberBetween($min = 5, $max = 50),
             'categoria_id' => Categoria::all()->random()->id,
             'restaurante_id' => Restaurante::all()->random()->id,

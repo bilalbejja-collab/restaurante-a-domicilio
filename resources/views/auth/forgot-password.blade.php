@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <img src="img/logo.svg" alt="" class="block h-10 w-auto">
+            <img src="{{ url('img/logo.jpg') }}" alt="mi logo" style="width: 50px; border-radius: 10px; box-shadow: 2px 2px 18px #888888;">
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">

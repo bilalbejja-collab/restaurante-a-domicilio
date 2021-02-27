@@ -2,6 +2,7 @@
     <div class="container py-8">
 
         @if (count(Cart::getContent()))
+            <h2 class="h2 text-center text-gray-600 mb-5 font-mono text-xl font-bold">TU CARRITO DE COMPRA</h2>
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -51,6 +52,18 @@
                     </div>
                 </div>
             </div>
+            <form action="{{ route('cart.add') }}" method="POST">
+                @csrf
+
+                <input type="hidden" name="plato_id" value="{{ $plato->id }}">
+
+                <div class="inline-block mr-2 mt-4 flex justify-center">
+                    <button type="submit"
+                        class="text-white text-lg py-2.5 px-5 rounded-md bg-gray-800 hover:bg-gray-900 hover:shadow-lg font-mono">
+                        HACER LA COMPRA
+                    </button>
+                </div>
+            </form>
         @else
             <p>Carrito vacío</p>
         @endif

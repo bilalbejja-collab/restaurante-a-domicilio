@@ -26,9 +26,9 @@
 
                     <input type="hidden" name="plato_id" value="{{ $plato->id }}">
 
-                    <div class="inline-block mr-2 mt-4">
+                    <div class="inline-block mr-2 mt-4 flex justify-center">
                         <button type="submit"
-                            class="text-white text-sm py-2.5 px-5 rounded-md bg-gray-700 hover:bg-gray-900 hover:shadow-lg">
+                            class="text-white text-lg py-2.5 px-5 rounded-md bg-gray-800 hover:bg-gray-900 hover:shadow-lg font-mono">
                             Añadir al pedido {{ $plato->precio }}€
                         </button>
                     </div>
