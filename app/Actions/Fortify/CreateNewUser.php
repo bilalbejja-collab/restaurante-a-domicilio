@@ -49,6 +49,6 @@ class CreateNewUser implements CreatesNewUsers
             'estado' => '',
 
             'password' => Hash::make($input['password']),
-        ]);
+        ])->assignRole('Cliente');
     }
 }

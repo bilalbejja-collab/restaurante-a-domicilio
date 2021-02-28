@@ -11,18 +11,18 @@ class LoginResponse implements LoginResponseContract
 
     public function toResponse($request)
     {
-        /*
         $id = Auth::id();
         $user = User::find($id);
-        if ($user->role->role_id == '2') {
+
+        if ($user->hasRole("Cliente")) {
             return $request->wantsJson()
                 ? response()->json(['two_factor' => false])
-                : redirect()->intended('welcome');
-        }
-        */
+                : redirect()->intended('/');
+        } else {
 
-        return $request->wantsJson()
-            ? response()->json(['two_factor' => false])
-            : redirect()->intended(config('fortify.home'));
+            return $request->wantsJson()
+                ? response()->json(['two_factor' => false])
+                : redirect()->intended(config('fortify.home'));
+        }
     }
 }

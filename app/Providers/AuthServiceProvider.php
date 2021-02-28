@@ -26,20 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('manage-all', function (User $user) {
-            return $user->role->role == 'admin';
-        });
-
-        Gate::define('manage-restaurantes', function (User $user) {
-            return $user->role->role == 'grestaurante';
-        });
-
-        Gate::define('manage-repartidores', function (User $user) {
-            return $user->role->role == 'repartidor';
-        });
-
-        Gate::define('manage-clientes', function (User $user) {
-            return $user->role->role == 'cliente';
+        Gate::define('platos.index', function (User $user) {
+            return $user->hasRole('Cliente');
         });
     }
 }
