@@ -47,12 +47,16 @@
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        @foreach ($categorias as $categoria)
+                        {{-- @foreach ($categorias as $categoria)
                             <a href="{{ route('platos.categoria', $categoria) }}"
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                                 {{ $categoria->nombre }}
                             </a>
-                        @endforeach
+                        @endforeach --}}
+                        <a href="{{ route('platos.index') }}"
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                            Platos
+                        </a>
                     </div>
                 </div>
             </div>
@@ -78,15 +82,15 @@
                             </button>
                         </div>
                         <!--
-                                                    Profile dropdown panel, show/hide based on dropdown state.
+                                                        Profile dropdown panel, show/hide based on dropdown state.
 
-                                                    Entering: "transition ease-out duration-100"
-                                                        From: "transform opacity-0 scale-95"
-                                                        To: "transform opacity-100 scale-100"
-                                                    Leaving: "transition ease-in duration-75"
-                                                        From: "transform opacity-100 scale-100"
-                                                        To: "transform opacity-0 scale-95"
-                                                    -->
+                                                        Entering: "transition ease-out duration-100"
+                                                            From: "transform opacity-0 scale-95"
+                                                            To: "transform opacity-100 scale-100"
+                                                        Leaving: "transition ease-in duration-75"
+                                                            From: "transform opacity-100 scale-100"
+                                                            To: "transform opacity-0 scale-95"
+                                                        -->
                         <div x-show="open" x-on:click.away="open = false"
                             class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
@@ -106,7 +110,7 @@
                                 @csrf
                                 <a href="{{ route('logout') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" onclick="event.preventDefault()
-                                                            this.closest('form').submit();">
+                                                                this.closest('form').submit();">
                                     Cerrar sesión
                                 </a>
                             </form>

@@ -3,25 +3,38 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Cart;
 use App\Models\Plato;
-use Darryldecode\Cart\Cart as CartCart;
+use Cart;
 
 class CartController extends Controller
 {
 
     public function add(Request $request)
     {
-        $plato = Plato::find($request->plato_id);
+        $restauranteCarro = null;
+
+        $plato = Plato::findorfail($request->plato_id);
+
+        if (count(Cart::getContent())>0) {
+            $plato_carro_id = Cart::getContent()->first()->id;
+            $plato_carro = Plato::find($plato_carro_id);
+            $restaurante_carro = $plato_carro->restaurante;
+
+            if (!empty($restaurante_carro)) {
+                if ($plato->restaurante->id != $restaurante_carro->id) {
+                    return back()->with(['info' => 'No se pueden añadir platos de diferentes restaurantes', 'color' => 'red']);
+                }
+            }
+        }
+
         Cart::add(
             $plato->id,
             $plato->nombre,
             $plato->precio,
             1,
-            array("urlfoto" => "url(storage/" . $plato->foto->url . ")")
+            array("urlfoto" => "storage/" . $plato->foto->url )
         );
-
-        return back()->with('success', "$plato->nombre !se ha agregado con éxito al carrito de compra!");
+        return back()->with(['info' => "\"$plato->nombre\" se ha agregado con éxito al carrito de compra!", 'color' => 'green']);
     }
 
     public function cart()

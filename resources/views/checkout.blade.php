@@ -1,7 +1,6 @@
 @can('platos.index')
     <x-app-layout>
         <div class="container py-8">
-
             @if (count(Cart::getContent()))
                 <h2 class="h2 text-center text-gray-600 mb-5 font-mono text-xl font-bold">TU CARRITO DE COMPRA</h2>
                 <div class="flex flex-col">
@@ -26,6 +25,9 @@
                                                     Cantidad</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Foto</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Accion</th>
                                             </tr>
                                         </thead>
@@ -36,6 +38,9 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">{{ $plato->name }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">{{ $plato->price }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">{{ $plato->quantity }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <img src="{{ $plato->image['urlfoto'] }}" style="width: 100px; height: 80px;" alt="{{ $plato->image['urlfoto'] }}">
+                                                </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <form action="{{ route('cart.removeitem') }}" method="post">
                                                         @csrf
