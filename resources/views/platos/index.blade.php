@@ -12,8 +12,7 @@
                             https://cdn.pixabay.com/photo/2021/02/06/19/29/pancakes-5989136_1280.jpg
                             @endif)">
 
-                            {{ Storage::url($plato->foto->url) }}
-                            <img src="img/logo.jpg" style="width: 100px" alt="">
+                            <img src="storage/platos/{{ $plato->foto->url }}" style="width: 100px" alt="">
 
                             <div class="w-full h-full px-8 flex flex-col justify-center">
                                 <div>
