@@ -22,8 +22,10 @@ class UserSeeder extends Seeder
             'address' => 'Crta de águilas',
             'city' => 'Cuevas del Almanzora',
             'movil' => '63233544',
+            'salario' => '1500',
+            'estado' => 'libre',
             'password' => bcrypt('12345678')
-        ])->syncRoles(['Admin', 'Cliente']);
+        ])->syncRoles(['Admin', 'Cliente', 'Repartidor']);
 
         User::factory(10)->create();
     }

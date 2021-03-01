@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
 use Illuminate\Http\Request;
 use App\Models\Plato;
+use App\Models\User;
 use Cart;
 
-class CartController extends Controller
+class CarroController extends Controller
 {
 
     public function add(Request $request)
@@ -15,7 +17,7 @@ class CartController extends Controller
 
         $plato = Plato::findorfail($request->plato_id);
 
-        if (count(Cart::getContent())>0) {
+        if (count(Cart::getContent()) > 0) {
             $plato_carro_id = Cart::getContent()->first()->id;
             $plato_carro = Plato::find($plato_carro_id);
             $restaurante_carro = $plato_carro->restaurante;
@@ -32,18 +34,24 @@ class CartController extends Controller
             $plato->nombre,
             $plato->precio,
             1,
-            array("urlfoto" => "storage/" . $plato->foto->url )
+            array("urlfoto" => "storage/" . $plato->foto->url)
         );
         return back()->with(['info' => "\"$plato->nombre\" se ha agregado con éxito al carrito de compra!", 'color' => 'green']);
     }
 
-    public function cart()
+    /**
+     * Ver carrito
+     */
+    public function verCarro()
     {
         return view('checkout');
     }
 
 
-    public function removeitem(Request $request)
+    /**
+     * Borrar un plato del carrito
+     */
+    public function borrarItem(Request $request)
     {
         Cart::remove([
             'id' => $request->id
@@ -52,10 +60,37 @@ class CartController extends Controller
         return back()->with('success', "Plato eliminado con éxito de su carrito.");
     }
 
-
-    public function clear()
+    /**
+     * Limpiar carrito
+     */
+    public function limpiarCarro()
     {
         Cart::clear();
-        return back()->with('success', "...");
+        return back()->with('success', "Carrito de compra limpiado");
+    }
+
+    /**
+     * Comprar los platos
+     */
+    public function comprarPlatos(Request $request)
+    {
+        $plato = Plato::where('id', $request->plato_id)->first();
+
+        // Coger un repeartidor libre al azar
+        $rnd_repartidor = User::role('Repartidor')
+            ->where('estado', 'libre')
+            ->get()->random()->id;
+
+        $request['estado'] = 'recibido';
+        $request['restaurante_id'] = $plato['restaurante_id'];
+        $request['repartidor_id'] = $rnd_repartidor;
+
+        foreach (Cart::getContent() as $plato) {
+            Pedido::create($request->all());
+        }
+
+        $this->limpiarCarro();
+
+        return back()->with('success', "Carrito de compra limpiado");
     }
 }

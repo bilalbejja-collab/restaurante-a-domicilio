@@ -39,10 +39,12 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">{{ $plato->price }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">{{ $plato->quantity }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <img src="{{ $plato->image['urlfoto'] }}" style="width: 100px; height: 80px;" alt="{{ $plato->image['urlfoto'] }}">
+                                                    <img src="{{ $plato->image['urlfoto'] }}"
+                                                        style="width: 100px; height: 80px;"
+                                                        alt="{{ $plato->image['urlfoto'] }}">
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <form action="{{ route('cart.removeitem') }}" method="post">
+                                                    <form action="{{ route('carro.borrar') }}" method="post">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $plato->id }}">
                                                         <button type="submit" class="btn btn-link btn-sm text-danger">
@@ -58,10 +60,11 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('cart.add') }}" method="POST">
+                <form action="{{ route('carro.comprar') }}" method="POST">
                     @csrf
 
                     <input type="hidden" name="plato_id" value="{{ $plato->id }}">
+                    <input type="hidden" name="cliente_id" value="{{ Auth::id() }}">
 
                     <div class="inline-block mr-2 mt-4 flex justify-center">
                         <button type="submit"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Plato;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -24,7 +25,11 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        //
+        return "Create";
+
+        $platos = Plato::latest('id')->paginate(8);
+
+        return view('platos.index', compact('platos'));
     }
 
     /**
@@ -35,7 +40,7 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "Store";
     }
 
     /**

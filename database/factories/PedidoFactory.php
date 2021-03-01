@@ -31,8 +31,7 @@ class PedidoFactory extends Factory
             ]),
             'user_id' => User::all()->random()->id,
             'restaurante_id' => Restaurante::all()->random()->id,
-            // Pienso hacer todas las personas con la clase User
-            'repartidor_id' => User::all()->random()->id,
+            'repartidor_id' => User::role('Repartidor')->random()->id,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ];

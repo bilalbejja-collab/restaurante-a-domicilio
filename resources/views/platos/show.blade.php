@@ -42,7 +42,7 @@
 
                     <!-- Carrito de compra: Button añdir al carro -->
 
-                    <form action="{{ route('cart.add') }}" method="POST">
+                    <form action="{{ route('carro.add') }}" method="POST">
                         @csrf
 
                         <input type="hidden" name="plato_id" value="{{ $plato->id }}">
