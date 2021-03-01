@@ -69,9 +69,10 @@ class PlatoController extends Controller
 
         $plato = Plato::create($request->all());
 
-        // mover la imágen de la carpeta temp a la carpeta public/storage/file
+        // mover la imágen a la carpeta public/storage/platos
         if ($request->file('file')) {
             $url = Storage::put('platos', $request->file('file'));
+            // asignar la foto a este plato
             $plato->foto()->create([
                 'url' => $url
             ]);
