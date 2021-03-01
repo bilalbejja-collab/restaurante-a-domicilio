@@ -23,5 +23,14 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('platos');
         Storage::makeDirectory('platos');
 
+        //Roles
+        $this->call(RoleSeeder::class);
+
+        $this->call(UserSeeder::class);
+        Restaurante::factory(5)->create();
+        //Repartidor::factory(5)->create();
+        Pedido::factory(8)->create();
+        Categoria::factory(5)->create();
+        $this->call(PlatoSeeder::class);
     }
 }
