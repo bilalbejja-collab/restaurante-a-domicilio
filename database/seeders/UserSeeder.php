@@ -23,18 +23,7 @@ class UserSeeder extends Seeder
             'city' => 'Cuevas del Almanzora',
             'movil' => '63233544',
             'password' => bcrypt('12345678')
-        ])->assignRole('Admin');
-
-        User::create([
-            'dni' => 'E8798712W',
-            'name' => 'Repartidor',
-            'lastname' => 'Repartidor',
-            'email' => 'repartidor@gmail.com',
-            'address' => 'Crta de águilas',
-            'city' => 'Cuevas del Almanzora',
-            'movil' => '897454654',
-            'password' => bcrypt('12345678')
-        ])->assignRole('Repartidor');
+        ])->syncRoles(['Admin', 'Cliente']);
 
         User::factory(10)->create();
     }
