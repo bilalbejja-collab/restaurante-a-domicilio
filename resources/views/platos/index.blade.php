@@ -13,7 +13,7 @@
                             @endif)">
 
 {{ {{ URL::to('/')}}'/'{{$plato->foto->url}} }}
-                        <img src="img/logo.jpb" style="width: 100px" alt="">
+                        <img src="img/logo.jpg" style="width: 100px" alt="">
 
                             <div class="w-full h-full px-8 flex flex-col justify-center">
                                 <div>
