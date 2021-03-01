@@ -7,6 +7,7 @@ use App\Http\Requests\PedidoRequest;
 use App\Models\Pedido;
 use App\Models\Repartidor;
 use App\Models\Restaurante;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -41,7 +42,8 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        $repartidores = Repartidor::pluck('apellidos', 'id');
+        //$repartidores = Repartidor::pluck('apellidos', 'id');
+        $repartidores = User::pluck('apellidos', 'id');
 
         $restaurantes = Restaurante::pluck('nombre', 'id');
 
@@ -78,7 +80,8 @@ class PedidoController extends Controller
     {
         $this->authorize('autor', $pedido);
 
-        $repartidores = Repartidor::pluck('apellidos', 'id');
+        //$repartidores = Repartidor::pluck('apellidos', 'id');
+        $repartidores = User::pluck('apellidos', 'id');
 
         $restaurantes = Restaurante::pluck('nombre', 'id');
 

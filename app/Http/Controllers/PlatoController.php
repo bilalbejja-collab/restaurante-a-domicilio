@@ -26,8 +26,8 @@ class PlatoController extends Controller
         return view('platos.show', compact('plato', 'similares'));
     }
 
-    public function categoria(Categoria $categoria){
-        $platos = Plato::where('categoria_id', $categoria->id)->latest('id')->paginate(2);
+    public function categoria(Categoria $categoria, Restaurante $restaurante){
+        $platos = Plato::where('categoria_id', $categoria->id)->where('restaurante_id', $restaurante->id)->latest('id')->paginate(2);
 
         return view('platos.categoria', compact('platos', 'categoria'));
     }

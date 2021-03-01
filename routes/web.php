@@ -21,7 +21,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', [PlatoController::clas
 
 Route::get('platos/{plato}', [PlatoController::class, 'show'])->name('platos.show');
 
-Route::get('categoria/{categoria}', [PlatoController::class, 'categoria'])->name('platos.categoria');
+Route::get('categoria/{categoria}/restaurante/{restaurante}', [PlatoController::class, 'categoria'])->name('platos.categoria');
 Route::get('restaurante/{restaurante}', [PlatoController::class, 'restaurante'])->name('platos.restaurante');
 
 Route::resource('users', UserController::class)->only(['index','edit','update'])->names('admin.users');

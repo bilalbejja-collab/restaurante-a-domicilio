@@ -42,7 +42,7 @@ class PlatoController extends Controller
      */
     public function create()
     {
-        // Pluck : genera un array solamente con los valores (sin claves)
+        // Pluck : genera un array solamente con los valores (sin claves) con el campo que quieras en este caso 'id'
         $categorias = Categoria::pluck('nombre', 'id');
 
         $restaurantes = Restaurante::pluck('nombre', 'id');
