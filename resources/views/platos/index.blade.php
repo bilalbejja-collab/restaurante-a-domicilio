@@ -6,13 +6,14 @@
                     <article class="w-full h-80 bg-cover bg-center @if ($loop->first) md:col-span-2 @endif" style="background-image:
                         url(@if ($plato->foto)
                             {{--{{ url('storage/' . $plato->foto->url) }}--}}
-                            {{ {{ URL::to('/')}}/$plato->foto->url }}
+                            {{ Storage::url($plato->foto->url) }}
 
                         @else
                             https://cdn.pixabay.com/photo/2021/02/06/19/29/pancakes-5989136_1280.jpg
                             @endif)">
 
-{{ {{ URL::to('/')}}/$plato->foto->url }}
+{{ {{ URL::to('/')}}'/'{{$plato->foto->url}} }}
+                        <img src="img/logo.jpb" style="width: 100px" alt="">
 
                             <div class="w-full h-full px-8 flex flex-col justify-center">
                                 <div>
