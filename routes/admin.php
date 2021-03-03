@@ -9,8 +9,8 @@ use App\Http\Controllers\Admin\RestauranteController;
 use App\Http\Controllers\Admin\PlatoController;
 use App\Http\Controllers\Admin\RepartidorController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\PostController;
+
+// El prefix y el middlware auth para este router están en app/Providers/RouteServiceProvider
 
 // Al panel de administración solo puede acceder: admin, repartidor o grestaurante
 Route::get('', [HomeController::class, "index"])->middleware('can:admin.home')->name('admin.home');

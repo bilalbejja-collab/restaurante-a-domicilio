@@ -23,9 +23,9 @@
                         @foreach ($repartidores as $repartidor)
                             <tr>
                                 <td>{{ $repartidor->id }}</td>
-                                <td>{{ $repartidor->nombre }}</td>
-                                <td>{{ $repartidor->apellidos }}</td>
-                                <td>{{ $repartidor->telefono }}</td>
+                                <td>{{ $repartidor->name }}</td>
+                                <td>{{ $repartidor->lastname }}</td>
+                                <td>{{ $repartidor->movil }}</td>
                                 <td>{{ $repartidor->salario }}</td>
                                 <td>{{ $repartidor->estado }}</td>
                                 <td width="10px">

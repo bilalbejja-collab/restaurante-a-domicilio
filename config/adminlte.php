@@ -12,7 +12,7 @@ $menu = [
 
     [
         'text'        => 'Users',
-        'url'         => 'users',
+        'route'         => 'admin.users.index',
         'icon'        => 'fas fa-users fa-fw',
         'active' =>  ['admin/users*'],
         'can' => 'admin.users.index',

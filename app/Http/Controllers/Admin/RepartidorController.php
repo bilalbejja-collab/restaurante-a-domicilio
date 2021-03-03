@@ -10,7 +10,7 @@ use Livewire\WithPagination;
 
 class RepartidorController extends Controller
 {
-   /**
+    /**
      * Protección de rutas
      */
     public function __construct()
@@ -23,9 +23,7 @@ class RepartidorController extends Controller
 
     public function index()
     {
-        $repartidores = User::role('Repartidor')->get();
-        //return $repartidores;
-        return view('admin.repartidores.index', compact('repartidores'));
+        return view('admin.repartidores.index');
     }
 
     public function create()
@@ -48,7 +46,7 @@ class RepartidorController extends Controller
             'direccion' => 'required',
             'ciudad' => 'required',
             'telefono' => 'required|numeric',
-            // minimo 5 si es por hora
+            // minimo 5 si es por hora por ejemplo
             'salario' => 'required|numeric|min:5',
             'estado' => 'required',
             'password' => 'required'
@@ -57,6 +55,9 @@ class RepartidorController extends Controller
         // Hash la contraseña
         $request['password'] = Hash::make($request['password']);
 
+        return "Store " . $request['password'];
+
+        // Crear usuario y asignarle role de Repartidor
         $repartidor = User::create($request->all())->assignRole('Repartidor');
 
         return redirect()->route('admin.repartidores.edit', $repartidor)->with('info', 'El repartidor se creó con éxito');
@@ -75,13 +76,13 @@ class RepartidorController extends Controller
     public function update(Request $request, User $repartidore)
     {
         $request->validate([
-            'dni' => "required|unique:users,dni,$repartidore->dni",
-            'nombre' => 'required',
-            'apellidos' => "required|unique:users,apellidos,$repartidore->apellidos",
-            'email' => "required|unique:users,email,$repartidore->email",
-            'direccion' => 'required',
-            'ciudad' => 'required',
-            'telefono' => 'required|numeric',
+            'dni' => "required|unique:users,dni,$repartidore->id",
+            'name' => 'required',
+            'lastname' => "required|unique:users,lastname,$repartidore->id",
+            'email' => "required|unique:users,email,$repartidore->id",
+            'address' => 'required',
+            'city' => 'required',
+            'movil' => 'required|numeric',
             'salario' => 'required|numeric|not_in:0',
             'estado' => 'required',
             'password' => 'required'
@@ -89,6 +90,8 @@ class RepartidorController extends Controller
 
         // Hash la contraseña
         $request['password'] = Hash::make($request['password']);
+
+        //return Hash::check('12345678', $request['password']);
 
         $repartidore->update($request->all());
 

@@ -30,7 +30,6 @@ class UserController extends Controller
     public function repartidores()
     {
         $repartidores = User::role('Repartidor')->get();
-        //return $repartidores;
         return view('admin.repartidores.index', compact('repartidores'));
     }
 

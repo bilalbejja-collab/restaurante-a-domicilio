@@ -1,6 +1,8 @@
 @can('platos.index')
     <x-app-layout>
         <div class="container py-8">
+            {{--Notificación de que el plato si añadó o no al carrito--}}
+
             @if (session('info'))
                 <div x-data="{ show: true }" x-show="show"
                     class="text-center bg-{{ session('color') }}-100 mb-4 border border-{{ session('color') }}-400 text-{{ session('color') }}-700 px-4 py-3 rounded relative"

@@ -23,8 +23,8 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->dni }}</td>
-                                <td>{{ $user->nombre }}</td>
-                                <td>{{ $user->apellidos }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->lastname }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td width='10px'>
 

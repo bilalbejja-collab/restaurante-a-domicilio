@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -24,7 +25,7 @@ class UserSeeder extends Seeder
             'movil' => '63233544',
             'salario' => '1500',
             'estado' => 'libre',
-            'password' => bcrypt('12345678')
+            'password' => Hash::make('12345678')
         ])->syncRoles(['Admin', 'Cliente', 'Repartidor']);
 
         User::factory(10)->create();

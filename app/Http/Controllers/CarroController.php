@@ -13,8 +13,6 @@ class CarroController extends Controller
 
     public function add(Request $request)
     {
-        $restauranteCarro = null;
-
         $plato = Plato::findorfail($request->plato_id);
 
         if (count(Cart::getContent()) > 0) {
@@ -36,7 +34,7 @@ class CarroController extends Controller
             1,
             array("urlfoto" => "storage/" . $plato->foto->url)
         );
-        return back()->with(['info' => "\"$plato->nombre\" se ha agregado con éxito al carrito de compra!", 'color' => 'green']);
+        return back()->with(['info' => "\"$plato->nombre\" ¡se ha agregado con éxito al carrito de compra!", 'color' => 'green']);
     }
 
     /**
@@ -44,7 +42,7 @@ class CarroController extends Controller
      */
     public function verCarro()
     {
-        return view('checkout');
+        return view('carrito.checkout');
     }
 
 
@@ -57,7 +55,7 @@ class CarroController extends Controller
             'id' => $request->id
         ]);
 
-        return back()->with('success', "Plato eliminado con éxito de su carrito.");
+        return back()->with(['info' => 'Plato eliminado con éxito de su carrito!', 'color' => 'green']);
     }
 
     /**
@@ -66,7 +64,7 @@ class CarroController extends Controller
     public function limpiarCarro()
     {
         Cart::clear();
-        return back()->with('success', "Carrito de compra limpiado");
+        return back()->with('success', 'Carrito de compra vacío');
     }
 
     /**
@@ -76,21 +74,22 @@ class CarroController extends Controller
     {
         $plato = Plato::where('id', $request->plato_id)->first();
 
-        // Coger un repeartidor libre al azar
+        // Asigno un repeartidor libre al azar
         $rnd_repartidor = User::role('Repartidor')
             ->where('estado', 'libre')
             ->get()->random()->id;
 
         $request['estado'] = 'recibido';
         $request['restaurante_id'] = $plato['restaurante_id'];
-        $request['repartidor_id'] = $rnd_repartidor;
+        $request['repartidor_id'] = $rnd_repartidor ? $rnd_repartidor : 0;
 
         foreach (Cart::getContent() as $plato) {
             Pedido::create($request->all());
         }
 
+        // Después de comprar limpio el carrito
         $this->limpiarCarro();
 
-        return back()->with('success', "Carrito de compra limpiado");
+        return back()->with(['info' => 'Pedido realizado correctamente!', 'color' => 'green']);
     }
 }
