@@ -28,3 +28,4 @@ Route::post('carro-comprar', [CarroController::class, 'comprarPlatos'])->name('c
 Route::get('pedidos', [PedidoController::class, 'verPedidos'])->name('pedidos.index');
 Route::post('pedidos/borrar', [PedidoController::class, 'borrarPedido'])->name('pedidos.borrar');
 
+Route::get('/send-email', [CarroController::class , 'enviarEmail']);

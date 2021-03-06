@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header">
-            <input wire:model="search" class="form-control" type="text" placeholder="Ingrese el nombre de un repartidor">
+            <input wire:model="search" class="form-control" type="text" placeholder="Ingrese el estado de un repartidor">
         </div>
 
         @if ($repartidores->count())

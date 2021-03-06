@@ -14,11 +14,12 @@ class CreatePedidoPlatoTable extends Migration
     public function up()
     {
         Schema::create('pedido_plato', function (Blueprint $table) {
-            //$table->id();
 
             $table->unsignedBigInteger('pedido_id');
             $table->unsignedBigInteger('plato_id');
             $table->primary(['pedido_id', 'plato_id']);
+
+            $table->integer('cantidad')->nullable();
 
             $table->foreign('pedido_id')->references('id')->on('pedidos')->onDelete('cascade');
             $table->foreign('plato_id')->references('id')->on('platos')->onDelete('cascade');

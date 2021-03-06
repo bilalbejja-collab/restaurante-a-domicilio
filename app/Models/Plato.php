@@ -31,7 +31,8 @@ class Plato extends Model
     //Relacion Muchos a Muchos
     public function pedidos()
     {
-        return $this->belongsToMany(Pedido::class);
+        return $this->belongsToMany(Pedido::class, 'pedido_plato')
+        ->withPivot('cantidad');
     }
 
     //Relacion Uno a Uno polimórfica

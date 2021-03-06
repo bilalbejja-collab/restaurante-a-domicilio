@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestMail;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
 use App\Models\Plato;
 use App\Models\User;
 use Cart;
+use Illuminate\Support\Facades\Mail;
 
 class CarroController extends Controller
 {
@@ -77,19 +79,42 @@ class CarroController extends Controller
         // Asigno un repeartidor libre al azar
         $rnd_repartidor = User::role('Repartidor')
             ->where('estado', 'libre')
-            ->get()->random()->id;
+            ->get();
 
         $request['estado'] = 'recibido';
         $request['restaurante_id'] = $plato['restaurante_id'];
-        $request['repartidor_id'] = $rnd_repartidor ? $rnd_repartidor : 0;
+        // Cuando no hay ningun repartidor disponible asigno 0
+        $request['repartidor_id'] = count($rnd_repartidor) == 0 ? 0 :  $rnd_repartidor->random()->id;
 
+        // Se crea el pedido
+        $pedido = Pedido::create($request->all());
+
+        // Se guradan las lineas de pedidos
         foreach (Cart::getContent() as $plato) {
-            Pedido::create($request->all());
+            $pedido->platos()->attach(
+                $plato['id'],
+                ['cantidad' => $plato['quantity']]
+            );
         }
+
+        // Enviar email
+        // $this->enviarEmail();
 
         // Después de comprar limpio el carrito
         $this->limpiarCarro();
 
         return back()->with(['info' => 'Pedido realizado correctamente!', 'color' => 'green']);
+    }
+
+    public function enviarEmail()
+    {
+        $details = [
+            'title' => 'Mail from Bilal Bejja',
+            'body' => 'This is the body'
+        ];
+
+        Mail::to('englishwithbilal@gmail.com')->send(new TestMail($details));
+        return 'Mail sent';
+
     }
 }

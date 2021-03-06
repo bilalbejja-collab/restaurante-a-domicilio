@@ -16,22 +16,27 @@ class Pedido extends Model
     ];
 
     //Relacion Uno a Muchos inversa
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
     //Relacion Uno a Muchos inversa
-    public function repartidor(){
+    public function repartidor()
+    {
         return $this->belongsTo(Repartidor::class);
     }
 
     //Relacion Uno a Muchos inversa
-    public function restaurante(){
+    public function restaurante()
+    {
         return $this->belongsTo(Restaurante::class);
     }
 
     //Relacion Muchos a Muchos
-    public function platos(){
-        return $this->belongsToMany(Plato::class);
+    public function platos()
+    {
+        return $this->belongsToMany(Plato::class, 'pedido_plato')
+            ->withPivot('cantidad');
     }
 }
