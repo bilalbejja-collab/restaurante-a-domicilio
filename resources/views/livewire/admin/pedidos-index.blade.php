@@ -11,6 +11,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Estado</th>
+                            <th>Cantidad</th>
                             <th>RestauranteID</th>
                             <th>RepartidorID</th>
                             <th colspan="2"></th>
@@ -19,32 +20,35 @@
 
                     <tbody>
                         @foreach ($pedidos as $pedido)
-                            <tr>
-                                <td>{{ $pedido->id }}</td>
-                                <td>{{ $pedido->estado }}</td>
-                                <td>{{ $pedido->restaurante_id }}</td>
-                                <td>{{ $pedido->repartidor_id }}</td>
-                                <td width="10px">
+                            @if ($pedido->repartidor_id == Auth::id() || Auth::user()->roles->first()->name == 'Admin')
+                                <tr>
+                                    <td>{{ $pedido->id }}</td>
+                                    <td>{{ $pedido->estado }}</td>
+                                    <td>{{ $pedido->platos[0]['pivot']['cantidad'] }}</td>
+                                    <td>{{ $pedido->restaurante_id }}</td>
+                                    <td>{{ $pedido->repartidor_id }}</td>
+                                    <td width="10px">
 
-                                    @can('admin.pedidos.edit')
-                                        <a class="btn btn-primary btn-sm"
-                                            href="{{ route('admin.pedidos.edit', $pedido) }}">Editar</a>
-                                    @endcan
+                                        @can('admin.pedidos.edit')
+                                            <a class="btn btn-primary btn-sm"
+                                                href="{{ route('admin.pedidos.edit', $pedido) }}">Editar</a>
+                                        @endcan
 
-                                </td>
-                                <td width="10px">
+                                    </td>
+                                    <td width="10px">
 
-                                    @can('admin.pedidos.destroy')
-                                        <form action="{{ route('admin.pedidos.destroy', $pedido) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
+                                        @can('admin.pedidos.destroy')
+                                            <form action="{{ route('admin.pedidos.destroy', $pedido) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
 
-                                            <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
-                                        </form>
-                                    @endcan
+                                                <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                            </form>
+                                        @endcan
 
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

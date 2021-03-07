@@ -1,7 +1,8 @@
 <div>
     <div class="card">
         <div class="card-header">
-            <input wire:model="search" class="form-control" type="text" placeholder="Ingrese el estado de un repartidor">
+            <input wire:model="search" class="form-control" type="text"
+                placeholder="Ingrese el estado de un repartidor">
         </div>
 
         @if ($repartidores->count())
@@ -29,16 +30,30 @@
                                 <td>{{ $repartidor->salario }}</td>
                                 <td>{{ $repartidor->estado }}</td>
                                 <td width="10px">
-                                    <a class="btn btn-primary btn-sm"
-                                        href="{{ route('admin.repartidores.edit', $repartidor) }}">Editar</a>
+                                    <!--Mostrar el boton de editar repartidor solo si el usuario autenticado y el repartidor son la misma persona-->
+                                    @if (Auth::id() == $repartidor->id || Auth::user()->roles->first()->name == 'Admin')
+                                        @can('admin.repartidores.edit')
+                                            <a class="btn btn-primary btn-sm"
+                                                href="{{ route('admin.repartidores.edit', $repartidor) }}">Editar</a>
+                                        @endcan
+                                    @endif
+
                                 </td>
                                 <td width="10px">
-                                    <form action="{{ route('admin.repartidores.destroy', $repartidor) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
 
-                                        <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
-                                    </form>
+                                    <!--Mostrar el boton de borrar repartidor solo si el usuario autenticado y el repartidor son la misma persona-->
+                                    @if (Auth::id() == $repartidor->id || Auth::user()->roles->first()->name == 'Admin')
+                                        @can('admin.repartidores.destroy')
+                                            <form action="{{ route('admin.repartidores.destroy', $repartidor) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                            </form>
+                                        @endcan
+                                    @endif
+
                                 </td>
                             </tr>
                         @endforeach

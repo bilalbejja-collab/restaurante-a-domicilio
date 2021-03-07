@@ -6,6 +6,7 @@ use App\Mail\TestMail;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
 use App\Models\Plato;
+use App\Models\Restaurante;
 use App\Models\User;
 use Cart;
 use Illuminate\Support\Facades\Mail;
@@ -74,6 +75,9 @@ class CarroController extends Controller
      */
     public function comprarPlatos(Request $request)
     {
+        // Saco el cliente para luego pasarlo a enviarEmail()
+        $cliente = User::where('id', $request['cliente_id'])->first();
+
         $plato = Plato::where('id', $request->plato_id)->first();
 
         // Asigno un repeartidor libre al azar
@@ -98,7 +102,7 @@ class CarroController extends Controller
         }
 
         // Enviar email
-        // $this->enviarEmail();
+        $this->enviarEmail($cliente, $pedido);
 
         // Después de comprar limpio el carrito
         $this->limpiarCarro();
@@ -106,15 +110,21 @@ class CarroController extends Controller
         return back()->with(['info' => 'Pedido realizado correctamente!', 'color' => 'green']);
     }
 
-    public function enviarEmail()
+    /**
+     * Esta función la hice para probar enviar email
+     */
+    public function enviarEmail($cliente, $pedido)
     {
+        $restaurante = Restaurante::where('id', $pedido->restaurante_id)->first();
+
         $details = [
-            'title' => 'Mail from Bilal Bejja',
-            'body' => 'This is the body'
+            'restaurante' => $restaurante,
+            'cliente' => $cliente,
+            'pedido' => $pedido
         ];
 
-        Mail::to('englishwithbilal@gmail.com')->send(new TestMail($details));
-        return 'Mail sent';
+        Mail::to($cliente->email)->send(new EmailConfirm($details));
+        return 'Email enviado con éxito';
 
     }
 }

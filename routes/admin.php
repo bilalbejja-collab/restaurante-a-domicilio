@@ -24,5 +24,6 @@ Route::resource('restaurantes', RestauranteController::class)->except('show')->n
 Route::resource('platos', PlatoController::class)->except('show')->names('admin.platos');
 
 Route::resource('repartidores', RepartidorController::class)->except('show')->names('admin.repartidores');
+Route::resource('repartidor', RepartidorController::class)->except('show')->names('admin.repartidor');
 
 Route::resource('pedidos', PedidoController::class)->except('show')->names('admin.pedidos');

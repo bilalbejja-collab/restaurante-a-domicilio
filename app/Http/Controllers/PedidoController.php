@@ -12,7 +12,7 @@ class PedidoController extends Controller
     public function verPedidos()
     {
         // Pedidos del usuario autenticado
-        $pedidos = Pedido::where('user_id', Auth::id())->get();
+        $pedidos = Pedido::where('user_id', Auth::id())->latest('id')->paginate(8);
 
         return view('pedidos.checkout', compact('pedidos'));
     }

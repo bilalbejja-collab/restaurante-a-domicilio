@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithPagination;
 
@@ -40,22 +41,19 @@ class RepartidorController extends Controller
     {
         $request->validate([
             'dni' => 'required|unique:users',
-            'nombre' => 'required',
-            'apellidos' => 'required|unique:users',
+            'name' => 'required',
+            'lastname' => 'required|unique:users',
             'email' => 'required|unique:users',
-            'direccion' => 'required',
-            'ciudad' => 'required',
-            'telefono' => 'required|numeric',
-            // minimo 5 si es por hora por ejemplo
-            'salario' => 'required|numeric|min:5',
+            'address' => 'required',
+            'city' => 'required',
+            'movil' => 'required|numeric',
+            'salario' => 'required|numeric|min:1050',
             'estado' => 'required',
             'password' => 'required'
         ]);
 
         // Hash la contraseña
         $request['password'] = Hash::make($request['password']);
-
-        return "Store " . $request['password'];
 
         // Crear usuario y asignarle role de Repartidor
         $repartidor = User::create($request->all())->assignRole('Repartidor');
@@ -65,6 +63,8 @@ class RepartidorController extends Controller
 
     public function edit(User $repartidore)
     {
+        $this->authorize('autor', $repartidore);
+
         $estados = [
             'libre' => 'Estado libre',
             'ocupado' => 'Estado ocupado'
@@ -83,15 +83,13 @@ class RepartidorController extends Controller
             'address' => 'required',
             'city' => 'required',
             'movil' => 'required|numeric',
-            'salario' => 'required|numeric|not_in:0',
+            'salario' => 'required|numeric|min:1050',
             'estado' => 'required',
             'password' => 'required'
         ]);
 
         // Hash la contraseña
         $request['password'] = Hash::make($request['password']);
-
-        //return Hash::check('12345678', $request['password']);
 
         $repartidore->update($request->all());
 
@@ -100,6 +98,8 @@ class RepartidorController extends Controller
 
     public function destroy(User $repartidore)
     {
+        $this->authorize('autor', $repartidore);
+
         $repartidore->delete();
 
         return redirect(route('admin.repartidores.index'))->with('info', 'El repartidor se eliminó con éxito');

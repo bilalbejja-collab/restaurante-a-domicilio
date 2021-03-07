@@ -21,8 +21,7 @@ class PedidosIndex extends Component
 
     public function render()
     {
-        $pedidos = Pedido::where('user_id', auth()->user()->id)
-            ->where('estado', 'LIKE', '%' . $this->search . '%')
+        $pedidos = Pedido::where('estado', 'LIKE', '%' . $this->search . '%')
             ->latest('id')
             ->paginate(6);
 

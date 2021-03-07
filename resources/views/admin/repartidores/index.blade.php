@@ -3,9 +3,12 @@
 @section('title', 'Restaurante a domicilio')
 
 @section('content_header')
-    <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.repartidores.create') }}">
-        Nuevo repartidor
-    </a>
+    @if (Auth::user()->roles->first()->name == 'Admin')
+        <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.repartidores.create') }}">
+            Nuevo repartidor
+        </a>
+    @endif
+
     <h1>Lista de repartidores</h1>
 @stop
 

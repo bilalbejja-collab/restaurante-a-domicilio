@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserSeeder::class);
         Restaurante::factory(5)->create();
-        Pedido::factory(8)->create();
+        //Pedido::factory(8)->create();
         Categoria::factory(5)->create();
         $this->call(PlatoSeeder::class);
     }

@@ -12,8 +12,9 @@ class PedidoPolicy
 
     public function autor(User $user, Pedido $pedido)
     {
-        if ($user->id == $pedido->user_id)
+        if (($user->id == $pedido->repartidor_id) || ($user->hasRole('Admin'))){
             return true;
+        }
         else
             return false;
     }

@@ -12,6 +12,17 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('cantidad', 'Cantidad') !!}
+    {!! Form::number('cantidad', null, ['class' => 'form-control', 'min' => 1]) !!}
+
+    @error('cantidad')
+        <small class="text-danger">
+            {{ $message }}
+        </small>
+    @enderror
+</div>
+
+<div class="form-group">
     {!! Form::label('restaurante_id', 'Restaurante') !!}
     {!! Form::select('restaurante_id', $restaurantes, null, ['class' => 'form-control']) !!}
 

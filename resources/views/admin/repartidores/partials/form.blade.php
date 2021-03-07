@@ -126,7 +126,7 @@
 
 <div class="form-group">
     {!! Form::label('password', 'Contraseña') !!}
-    {!! Form::text('password', null, [
+    {!! Form::text('password', "", [
     'class' => 'form-control',
     'placeholder' => 'Ingrese la contraseña del repartidor',
     ]) !!}

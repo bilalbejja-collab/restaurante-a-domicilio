@@ -44,6 +44,12 @@
                                                     Restaurante</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Plato</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Cantidad</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Accion</th>
                                             </tr>
                                         </thead>
@@ -53,7 +59,13 @@
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">{{ $pedido->id }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">{{ $pedido->estado }}</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">{{ $pedido->restaurante->nombre }}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">{{ $pedido->restaurante->nombre }}
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ App\Models\Plato::where('id', $pedido->platos[0]->pivot['plato_id'])->first()->nombre }}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $pedido->platos[0]->pivot['cantidad'] }}
+                                                </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <form action="{{ route('pedidos.borrar') }}" method="post">
                                                         @csrf
@@ -68,9 +80,13 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="mt-4">
+                                {{ $pedidos->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
+
             @else
                 <h2 class="h2 text-center text-gray-600 mb-5 font-mono text-xl font-bold">USTED NO TIENE NINGÚN PEDIDO
                     PENDIENTE!</h2>

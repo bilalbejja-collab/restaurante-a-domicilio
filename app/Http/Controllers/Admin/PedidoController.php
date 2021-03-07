@@ -43,15 +43,15 @@ class PedidoController extends Controller
     public function create()
     {
         //$repartidores = Repartidor::pluck('apellidos', 'id');
-        $repartidores = User::pluck('apellidos', 'id');
+        $repartidores = User::role('Repartidor')->pluck('lastname', 'id');
 
         $restaurantes = Restaurante::pluck('nombre', 'id');
 
         // key = value: para que no me guarde en la base de datos el key por defecto
         $estados = [
-            'cancelado' => 'cancelado',
             'recibido' => 'recibido',
-            'entregado' => 'entregado'
+            'finalizado' => 'finalizado',
+            'cancelado' => 'cancelado'
         ];
 
         return view('admin.pedidos.create', compact('repartidores', 'restaurantes', 'estados'));

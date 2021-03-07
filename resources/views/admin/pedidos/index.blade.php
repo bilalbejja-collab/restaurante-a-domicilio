@@ -4,12 +4,11 @@
 
 @section('content_header')
 
-    @can('admin.pedidos.create')
+    {{-- @can('admin.pedidos.create')
         <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.pedidos.create') }}">
             Nuevo pedido
         </a>
-    @endcan
-
+    @endcan --}}
     <h1>Lista de pedidos</h1>
 @stop
 

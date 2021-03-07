@@ -59,6 +59,6 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.repartidores.index'])->syncRoles([$role1, $role3]);
         Permission::create(['name' => 'admin.repartidores.create'])->assignRole($role1);
         Permission::create(['name' => 'admin.repartidores.edit'])->syncRoles([$role1, $role3]);
-        Permission::create(['name' => 'admin.repartidores.destroy'])->syncRoles([$role1, $role3]);
+        Permission::create(['name' => 'admin.repartidores.destroy'])->assignRole($role1);
     }
 }
