@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\TestMail;
+use App\Mail\EmailConfirm;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
 use App\Models\Plato;
@@ -111,20 +111,24 @@ class CarroController extends Controller
     }
 
     /**
-     * Esta función la hice para probar enviar email
+     * Envia la factura de compra
      */
     public function enviarEmail($cliente, $pedido)
     {
         $restaurante = Restaurante::where('id', $pedido->restaurante_id)->first();
 
-        $details = [
-            'restaurante' => $restaurante,
-            'cliente' => $cliente,
-            'pedido' => $pedido
-        ];
+        $data["email"] = $cliente->email;
+        $data["titulo"] = "CONFIRMACION DE COMPRA";
+        $data["restaurante"] = $restaurante;
+        $data["cliente"] = $cliente;
+        $data["pedido"] = $pedido;
 
-        Mail::to($cliente->email)->send(new EmailConfirm($details));
-        return 'Email enviado con éxito';
+        $pdf = \PDF::loadView('emails.mail', $data);
 
+        Mail::send('emails.mail', $data, function ($message) use ($data, $pdf) {
+            $message->to($data["email"], $data["email"])
+                ->subject($data["titulo"])
+                ->attachData($pdf->output(), "TuCompra.pdf");
+        });
     }
 }

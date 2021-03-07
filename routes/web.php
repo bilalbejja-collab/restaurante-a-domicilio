@@ -1,11 +1,9 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\PlatoController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CarroController;
 use App\Http\Controllers\PedidoController;
-use Facade\FlareClient\Http\Response;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 // Ruta para ver platos en la página principal
@@ -30,14 +28,5 @@ Route::post('carro-comprar', [CarroController::class, 'comprarPlatos'])->name('c
 Route::get('pedidos', [PedidoController::class, 'verPedidos'])->name('pedidos.index');
 Route::post('pedidos/borrar', [PedidoController::class, 'borrarPedido'])->name('pedidos.borrar');
 
-Route::get('/send-email', [CarroController::class, 'enviarEmail']);
-
-Route::get('/pdf', function () {
-    $pdf = App::make('snappy.pdf.wrapper');
-    //To file
-    $html = '<h1>Bill</h1><p>You owe me money, dude.</p>';
-    $pdf->loadHTML($html);
-
-    return $pdf->inline();
-
-});
+// Ruta acerca de nosotros
+Route::get('acerca-de-nosotros', [Controller::class, 'acercaDeNosotros'])->name('acerca-de-nosotros');

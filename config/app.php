@@ -182,8 +182,9 @@ return [
         // carryldecode/cart
         Darryldecode\Cart\CartServiceProvider::class,
         // Snappy PDF
-        Barryvdh\Snappy\ServiceProvider::class,
-
+        // Barryvdh\Snappy\ServiceProvider::class,
+        // DOMPDF Wrapper
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -242,8 +243,10 @@ return [
         // Carro de compra
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         // Snappy IMG
-        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        // 'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+        // DOMPDF Wrapper
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

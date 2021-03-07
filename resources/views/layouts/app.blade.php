@@ -33,7 +33,6 @@
 
     <div class="min-h-screen bg-gray-100">
 
-        <!--He borrado el menu de jetstream-->
         <!--Y voy a usar el menu de tailwind-->
         @livewire('navigation')
 
