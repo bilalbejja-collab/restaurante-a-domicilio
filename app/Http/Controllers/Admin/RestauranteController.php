@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\RestauranteResource;
+use App\Models\Plato;
 use App\Models\Restaurante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RestauranteController extends Controller
 {
@@ -103,5 +106,47 @@ class RestauranteController extends Controller
         $restaurante->delete();
 
         return redirect(route('admin.restaurantes.index'))->with('info', 'La restaurante se eliminó con éxito');
+    }
+
+    # API REST
+
+    /**
+     * Crea un restaurante
+     */
+    public function apiStoreRestaurante(Request $request)
+    {
+        $restaurante = new Restaurante;
+        $restaurante->nombre = $request->nombre;
+        $restaurante->direccion = $request->direccion;
+        $restaurante->ciudad = $request->ciudad;
+        $restaurante->telefono = $request->telefono;
+        $restaurante->longitud = $request->longitud;
+        $restaurante->latitud = $request->latitud;
+        $restaurante->save();
+
+        //En lugar de devolver una vista, devuelvo si se ha realizado la acción
+        return response([
+            'message' => 'realizado correctamente'
+        ], 201);
+    }
+
+    /**
+     * Crea un plato
+     */
+    public function apiStorePlato(Request $request)
+    {
+        return $request;
+        $plato = new Plato();
+        $plato->nombre = $request->nombre;
+        $plato->descripcion = $request->descripcion;
+        $plato->precio = $request->precio;
+        $plato->categoria_id = $request->categoria_id;
+        $plato->restaurante_id = $request->restaurante_id;
+        $plato->save();
+
+        //En lugar de devolver una vista, devuelvo si se ha realizado la acción
+        return response([
+            'message' => 'realizado correctamente'
+        ], 201);
     }
 }

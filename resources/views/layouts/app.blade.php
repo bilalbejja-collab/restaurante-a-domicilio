@@ -33,7 +33,7 @@
 
     <div class="min-h-screen bg-gray-100">
 
-        <!--Y voy a usar el menu de tailwind-->
+        <!--Voy a usar el menu de tailwind-->
         @livewire('navigation')
 
         <!-- Page Heading -->

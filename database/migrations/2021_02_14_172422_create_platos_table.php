@@ -18,7 +18,7 @@ class CreatePlatosTable extends Migration
 
             $table->string('nombre');
             $table->longText('descripcion');
-            //$table->string('foto');
+
             $table->string('precio');
             $table->unsignedBigInteger('categoria_id');
             $table->unsignedBigInteger('restaurante_id');

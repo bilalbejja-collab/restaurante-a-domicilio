@@ -29,7 +29,7 @@ class PedidoFactory extends Factory
             'estado' => $this->faker->randomElement([
                 'recibido', 'finalizado', 'entregado', 'cancelado'
             ]),
-            'user_id' => User::all()->random()->id,
+            'user_id' => User::role('Cliente')->get()->random()->id,
             'restaurante_id' => Restaurante::all()->random()->id,
             'repartidor_id' => User::role('Repartidor')->get()->random()->id,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

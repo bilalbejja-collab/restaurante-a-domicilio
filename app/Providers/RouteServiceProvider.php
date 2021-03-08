@@ -47,7 +47,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 
-            // Añadir el router para administradores
+            // Este es el router para administradores
             Route::middleware('web', 'auth')
                 ->prefix('admin')
                 ->namespace($this->namespace)
