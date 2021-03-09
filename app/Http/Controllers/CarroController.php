@@ -117,7 +117,8 @@ class CarroController extends Controller
     {
         $restaurante = Restaurante::where('id', $pedido->restaurante_id)->first();
 
-        $data["email"] = $cliente->email;
+        //$data["email"] = $cliente->email;
+        $data["email"] = "bilalbejja2016@gmail.com";
         $data["titulo"] = "CONFIRMACION DE COMPRA";
         $data["restaurante"] = $restaurante;
         $data["cliente"] = $cliente;
@@ -125,12 +126,10 @@ class CarroController extends Controller
 
         $pdf = \PDF::loadView('emails.mail', $data);
 
-        /*
         Mail::send('emails.mail', $data, function ($message) use ($data, $pdf) {
             $message->to($data["email"], $data["email"])
                 ->subject($data["titulo"])
                 ->attachData($pdf->output(), "TuCompra.pdf");
         });
-        */
     }
 }

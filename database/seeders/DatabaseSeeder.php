@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Para que no se compien los imagenes cada vez que llamo al seeder
-        // Storage::deleteDirectory('platos');
-        // Storage::makeDirectory('platos');
+        Storage::deleteDirectory('platos');
+        Storage::makeDirectory('platos');
 
         //Roles
         $this->call(RoleSeeder::class);
@@ -30,6 +30,6 @@ class DatabaseSeeder extends Seeder
         Restaurante::factory(5)->create();
         //Pedido::factory(8)->create();
         Categoria::factory(5)->create();
-        //$this->call(PlatoSeeder::class);
+        $this->call(PlatoSeeder::class);
     }
 }
