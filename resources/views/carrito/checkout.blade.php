@@ -63,26 +63,28 @@
                                                     {{ $plato->quantity }}
                                                 </td>
                                                 <!-- Si querriamos modificar la cantidad seria buena idea usar los metodos del carrito add y remove
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="inline-block flex">
+                                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                                    <div class="inline-block flex">
 
-                                                                {{ $plato->quantity }}
+                                                                        {{ $plato->quantity }}
 
-                                                                <form action="{{ route('carro.add') }}" method="POST">
-                                                                    @csrf
-                                                                    <input type="hidden" name="plato_id"
-                                                                        value="{{ $plato->id }}">
-                                                                    <button type="submit">
-                                                                        +
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                        -->
+                                                                        <form action="{{ route('carro.add') }}" method="POST">
+                                                                            @csrf
+                                                                            <input type="hidden" name="plato_id"
+                                                                                value="{{ $plato->id }}">
+                                                                            <button type="submit">
+                                                                                +
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                </td>
+                                                                -->
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <img src="{{ $plato->image['urlfoto'] }}"
-                                                        style="width: 100px; height: 80px;"
-                                                        alt="{{ $plato->image['urlfoto'] }}">
+                                                    @if ($plato->image['urlfoto'] != null)
+                                                        <img src="{{ $plato->image['urlfoto'] }}"
+                                                            style="width: 100px; height: 80px;"
+                                                            alt="{{ $plato->image['urlfoto'] }}">
+                                                    @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <form action="{{ route('carro.borrar') }}" method="post">
