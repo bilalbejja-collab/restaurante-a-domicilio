@@ -30,7 +30,7 @@
     <div class="col">
         <div class="image-wrapper">
             @isset ($plato->foto)
-                <img id="picture" src="{{ url('storage/' . $plato->foto->url) }}" alt="">
+                <img id="picture" src="{{ url('storage/' . $plato->foto->url) }}" alt="{{ url('storage/' . $plato->foto->url) }}">
             @else
                 <img id="picture" src="https://cdn.pixabay.com/photo/2021/02/06/19/29/pancakes-5989136_1280.jpg" alt="">
             @endisset
