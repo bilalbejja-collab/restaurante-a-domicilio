@@ -115,38 +115,20 @@ class RestauranteController extends Controller
      */
     public function apiStoreRestaurante(Request $request)
     {
-        $restaurante = new Restaurante;
-        $restaurante->nombre = $request->nombre;
-        $restaurante->direccion = $request->direccion;
-        $restaurante->ciudad = $request->ciudad;
-        $restaurante->telefono = $request->telefono;
-        $restaurante->longitud = $request->longitud;
-        $restaurante->latitud = $request->latitud;
-        $restaurante->save();
-
-        //En lugar de devolver una vista, devuelvo si se ha realizado la acción
-        return response([
-            'message' => 'realizado correctamente'
-        ], 201);
+        return Restaurante::create($request->all()) ?
+            response([
+                'message' => 'Restaurante creado correctamente'
+            ], 201) :
+            'No se creó el restaurante';
     }
 
     /**
-     * Crea un plato
+     * Borra un restaurante y sus platos
      */
-    public function apiStorePlato(Request $request)
+    public function apiDeleteRestaurante(Restaurante $restaurante)
     {
-        return $request;
-        $plato = new Plato();
-        $plato->nombre = $request->nombre;
-        $plato->descripcion = $request->descripcion;
-        $plato->precio = $request->precio;
-        $plato->categoria_id = $request->categoria_id;
-        $plato->restaurante_id = $request->restaurante_id;
-        $plato->save();
-
-        //En lugar de devolver una vista, devuelvo si se ha realizado la acción
-        return response([
-            'message' => 'realizado correctamente'
-        ], 201);
+        return $restaurante->delete() ?
+            response(['message' => 'Restaurante y sus platos borrados correctamente'], 201) :
+            'No se borró el restaurante';
     }
 }

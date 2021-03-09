@@ -149,4 +149,36 @@ class PlatoController extends Controller
 
         return redirect(route('admin.platos.index'))->with('info', 'El plato se eliminó con éxito');
     }
+
+    # API REST
+
+    /**
+     * Crea un plato
+     */
+    public function apiStorePlato(Request $request)
+    {
+        $plato = new Plato();
+        $plato->nombre = $request->nombre;
+        $plato->descripcion = $request->descripcion;
+        $plato->precio = $request->precio;
+        $plato->categoria_id = $request->categoria_id;
+        $plato->restaurante_id = $request->restaurante_id;
+
+        return $plato->save() ? response([
+            'message' => 'Plato creado correctamente'
+        ], 201) : 'No se creó el plato';
+    }
+
+    /**
+     * Borra un plato
+     */
+    public function apiDeletePlato(Request $request)
+    {
+        $plato = Plato::where('id', $request->plato_id)
+            ->where('restaurante_id', $request->restaurante_id);
+
+        return $plato->delete() ?
+            response(['message' => 'Plato borrado correctamente'], 201) :
+            'No se borró el plato';
+    }
 }
