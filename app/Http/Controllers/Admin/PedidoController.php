@@ -80,7 +80,7 @@ class PedidoController extends Controller
     {
         $this->authorize('autor', $pedido);
 
-        $repartidores = User::role('Repartidor')->pluck('lastname', 'id');
+        $repartidores = User::role('Repartidor')->where('estado', 'libre')->pluck('lastname', 'id');
 
         $restaurantes = Restaurante::pluck('nombre', 'id');
 

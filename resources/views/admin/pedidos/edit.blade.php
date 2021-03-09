@@ -29,7 +29,8 @@
 
             {!! Form::model($pedido, ['route' => ['admin.pedidos.update', $pedido], 'method' => 'put']) !!}
 
-            {!! Form::hidden('user_id', auth()->user()->id) !!}
+            {{-- Guardar el id del cliente que hizo el pedido en un hidden --}}
+            {!! Form::hidden('user_id', $pedido->user_id) !!}
 
             <div class="form-group">
                 {!! Form::label('estado', 'Estado') !!}
@@ -44,7 +45,12 @@
 
             <div class="form-group">
                 {!! Form::label('restaurante_id', 'Restaurante') !!}
-                {!! Form::select('restaurante_id', $restaurantes, null, ['class' => 'form-control']) !!}
+
+                @if (Auth::user()->roles->first()->name == 'Repartidor')
+                    {!! Form::select('restaurante_id', $restaurantes, null, ['class' => 'form-control', 'disabled', 'readonly']) !!}
+                @else
+                    {!! Form::select('restaurante_id', $restaurantes, null, ['class' => 'form-control']) !!}
+                @endif
 
                 @error('restaurante_id')
                     <small class="text-danger">
@@ -55,7 +61,12 @@
 
             <div class="form-group">
                 {!! Form::label('repartidor_id', 'Repartidor') !!}
-                {!! Form::select('repartidor_id', $repartidores, null, ['class' => 'form-control']) !!}
+
+                @if (Auth::user()->roles->first()->name == 'Repartidor')
+                    {!! Form::select('repartidor_id', $repartidores, null, ['class' => 'form-control', 'disabled', 'readonly']) !!}
+                @else
+                    {!! Form::select('repartidor_id', $repartidores, null, ['class' => 'form-control']) !!}
+                @endif
 
                 @error('repartidor_id')
                     <small class="text-danger">

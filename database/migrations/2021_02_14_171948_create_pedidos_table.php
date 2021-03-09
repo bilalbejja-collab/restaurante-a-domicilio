@@ -19,7 +19,8 @@ class CreatePedidosTable extends Migration
             $table->string('estado');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('restaurante_id');
-            $table->unsignedBigInteger('repartidor_id');
+            // nullable(): Para cuando no hay repartidor libre puedo asignar null
+            $table->unsignedBigInteger('repartidor_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('restaurante_id')->references('id')->on('restaurantes')->onDelete('cascade');

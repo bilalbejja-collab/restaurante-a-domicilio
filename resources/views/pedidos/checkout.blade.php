@@ -86,7 +86,6 @@
                         </div>
                     </div>
                 </div>
-
             @else
                 <h2 class="h2 text-center text-gray-600 mb-5 font-mono text-xl font-bold">USTED NO TIENE NINGÚN PEDIDO
                     PENDIENTE!</h2>
@@ -95,10 +94,16 @@
     </x-app-layout>
 @else
     <x-app-layout>
-        <div class="container py-8">
-            <div class="text-center">
-                ESTA ACCIÓN SOLO ESTÁ PERMITIDA A LOS CLIENTES
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <h2 class="font-bold text-xl text-black-800 leading-tight">
+                    Restaurante a domicilio
+                </h2>
             </div>
+        </header>
+
+        <div class="container py-8 text-center text-gray-600 mb-5 font-mono text-xl flex h-96 justify-center items-center">
+            ESTA ACCIÓN SOLO ESTÁ PERMITIDA A LOS CLIENTES
         </div>
     </x-app-layout>
 @endcan

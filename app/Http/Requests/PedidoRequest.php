@@ -13,11 +13,8 @@ class PedidoRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->user_id == auth()->user()->id) {
-            return true;
-        }else{
-            return false;
-        }
+        // Se podía hacer aqui la autorización pero yo como la tengo devuelvo "true"
+        return true;
     }
 
     /**
@@ -28,9 +25,7 @@ class PedidoRequest extends FormRequest
     public function rules()
     {
         return [
-            'estado' => 'required',
-            'restaurante_id' => 'required',
-            'repartidor_id' => 'required',
+            'estado' => 'required'
         ];
     }
 }

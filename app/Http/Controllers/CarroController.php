@@ -87,8 +87,8 @@ class CarroController extends Controller
 
         $request['estado'] = 'recibido';
         $request['restaurante_id'] = $plato['restaurante_id'];
-        // Cuando no hay ningun repartidor disponible asigno 0
-        $request['repartidor_id'] = count($rnd_repartidor) == 0 ? 0 :  $rnd_repartidor->random()->id;
+        // Cuando no hay ningun repartidor disponible asigno null
+        $request['repartidor_id'] = count($rnd_repartidor) == 0 ? null :  $rnd_repartidor->random()->id;
 
         // Se crea el pedido
         $pedido = Pedido::create($request->all());

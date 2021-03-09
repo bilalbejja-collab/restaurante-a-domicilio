@@ -2,7 +2,9 @@
 
 @section('content')
     @hasanyrole ('Admin|GRestaurante|Repartidor')
-        <p>BIENVENIDO AL PANEL DE ADMINISTRACIÓN</p>
+    <div class="container py-8 text-center text-gray-600 mb-5 font-mono text-xl">
+        BIENVENIDO AL PANEL DE ADMINISTRACIÓN
+    </div>
     @endrole
 @stop
 
@@ -13,5 +15,7 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script>
+        console.log('Hi!');
+    </script>
 @stop

@@ -26,7 +26,13 @@
                                     <td>{{ $pedido->estado }}</td>
                                     <td>{{ $pedido->platos[0]['pivot']['cantidad'] }}</td>
                                     <td>{{ $pedido->restaurante_id }}</td>
-                                    <td>{{ $pedido->repartidor_id }}</td>
+                                    <td>
+                                        @if ($pedido->repartidor_id == '')
+                                            No asignado
+                                        @else
+                                            {{ $pedido->repartidor_id }}
+                                        @endif
+                                    </td>
                                     <td width="10px">
 
                                         @can('admin.pedidos.edit')
