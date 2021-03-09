@@ -80,14 +80,18 @@
                                                         </td>
                                                         -->
                                                 <td class="px-6 py-4 whitespace-nowrap">
-
+                                                    {{--
+                                                    <img src="{{ $plato->image['urlfoto'] }}"
+                                                        style="width: 100px; height: 80px;"
+                                                        alt="{{ $plato->image['urlfoto'] }}">
+                                                    --}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <form action="{{ route('carro.borrar') }}" method="post">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $plato->id }}">
                                                         <button type="submit" class="btn btn-link btn-sm text-danger">
-                                                            <i class="fas fa-trash">X</i>
+                                                            <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>
                                                 </td>
