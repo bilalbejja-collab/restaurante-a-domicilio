@@ -33,8 +33,6 @@
                 {{-- Conetenido principal --}}
                 <div class="lg:col-span-2">
                     <figure>
-                        {{--En local--}}
-                        {{--{{ url('storage/' . $plato->foto->url) }}--}}
                         @if ($plato->foto)
                             <img class="w-full h-80 object-cover object-center"
                                 src="{{ url('storage/' . $plato->foto->url) }}" alt="{{ url('storage/' . $plato->foto->url) }}">
@@ -75,7 +73,7 @@
 
                                     @if ($similar->foto)
                                         <img class="w-36 h-20 object-cover object-center"
-                                            src="{{ url('storage/' . $similar->foto->url) }}" alt="">
+                                            src="{{ url('storage/' . $similar->foto->url) }}" alt="{{ url('storage/' . $similar->foto->url) }}">
                                     @else
                                         <img class="w-36 h-20 object-cover object-center"
                                             src="https://cdn.pixabay.com/photo/2021/02/06/19/29/pancakes-5989136_1280.jpg"

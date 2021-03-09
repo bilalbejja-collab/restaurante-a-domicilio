@@ -5,11 +5,7 @@
                 @foreach ($platos as $plato)
                     <article class="w-full h-80 bg-cover bg-center @if ($loop->first) md:col-span-2 @endif" style="background-image:
                         url(@if ($plato->foto)
-                            {{-- En local --}}
-                            {{-- {{ url('storage/' . $plato->foto->url) }} --}}
-                            {{-- A la hora de subir el proyecto a Heroku --}}
-                            {{ Storage::url($plato->foto->url) }}
-
+                            {{ url('storage/' . $similar->foto->url) }}
                         @else
                             https://cdn.pixabay.com/photo/2021/02/06/19/29/pancakes-5989136_1280.jpg
                             @endif)">
