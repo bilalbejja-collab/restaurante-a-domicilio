@@ -37,7 +37,7 @@
                         {{--{{ url('storage/' . $plato->foto->url) }}--}}
                         @if ($plato->foto)
                             <img class="w-full h-80 object-cover object-center"
-                                src="{{ Storage::url($plato->foto->url) }}" alt="{{ Storage::url($plato->foto->url) }}">
+                                src="{{ url('storage/' . $plato->foto->url) }}" alt="{{ url('storage/' . $plato->foto->url) }}">
                         @else
                             <img class="w-full h-80 object-cover object-center"
                                 src="https://cdn.pixabay.com/photo/2021/02/06/19/29/pancakes-5989136_1280.jpg" alt="">
