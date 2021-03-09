@@ -125,10 +125,12 @@ class CarroController extends Controller
 
         $pdf = \PDF::loadView('emails.mail', $data);
 
+        /*
         Mail::send('emails.mail', $data, function ($message) use ($data, $pdf) {
             $message->to($data["email"], $data["email"])
                 ->subject($data["titulo"])
                 ->attachData($pdf->output(), "TuCompra.pdf");
         });
+        */
     }
 }
