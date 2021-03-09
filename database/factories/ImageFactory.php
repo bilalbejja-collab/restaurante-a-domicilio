@@ -23,7 +23,7 @@ class ImageFactory extends Factory
     {
         return [
             //'url' => 'platos/' . $this->faker->image(public_path('storage/platos'), 640, 400, null, false) //false: para que solo me coge el nombre de la imagen
-            'url' => $this->faker->image('public/storage/platos', 640, 400, null, false) //false: para que solo me coge el nombre de la imagen
+            'url' => 'platos/' . $this->faker->image('public/storage/platos', 640, 400, null, false) //false: para que solo me coge el nombre de la imagen
         ];
     }
 }
