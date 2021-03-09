@@ -4,15 +4,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($platos as $plato)
                     <article class="w-full h-80 bg-cover bg-center @if ($loop->first) md:col-span-2 @endif" style="background-image:
-                        url(@if ($plato->foto)
-                            {{--En local--}}
-                            {{--{{ url('storage/' . $plato->foto->url) }}--}}
-                            {{-- A la hora de subir el proyecto a Heroku --}}
-                            {{ Storage::url($plato->foto->url) }}
-
-                        @else
+                        url(
                             https://cdn.pixabay.com/photo/2021/02/06/19/29/pancakes-5989136_1280.jpg
-                            @endif)">
+                            )">
 
                             <div class="w-full h-full px-8 flex flex-col justify-center">
                                 <div>
