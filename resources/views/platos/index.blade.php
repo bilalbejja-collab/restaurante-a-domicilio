@@ -8,7 +8,7 @@
                             {{-- En local --}}
                             {{-- {{ url('storage/' . $plato->foto->url) }} --}}
                             {{-- A la hora de subir el proyecto a Heroku --}}
-                            {{ url('storage/' . $plato->foto->url) }}
+                            {{ Storage::url($plato->foto->url) }}
 
                         @else
                             https://cdn.pixabay.com/photo/2021/02/06/19/29/pancakes-5989136_1280.jpg
