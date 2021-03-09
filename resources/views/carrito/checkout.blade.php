@@ -80,11 +80,9 @@
                                                                 </td>
                                                                 -->
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if ($plato->image['urlfoto'] != null)
-                                                        <img src="{{ $plato->image['urlfoto'] }}"
-                                                            style="width: 100px; height: 80px;"
-                                                            alt="{{ $plato->image['urlfoto'] }}">
-                                                    @endif
+                                                    {{-- <img src="{{ $plato->image['urlfoto'] }}"
+                                                        style="width: 100px; height: 80px;"
+                                                        alt="{{ $plato->image['urlfoto'] }}"> --}}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <form action="{{ route('carro.borrar') }}" method="post">
