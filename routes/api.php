@@ -52,7 +52,7 @@ Route::prefix('asocrest')->group(function () {
          */
         Route::put(
             '/{restaurante_id}/categorias/{categoria_id}/plato',
-            [RestauranteController::class, 'apiStorePlato']
+            [PlatoController::class, 'apiStorePlato']
         );
 
         /**
@@ -104,7 +104,7 @@ Route::prefix('asocrest')->group(function () {
         /**
          * GET /asocrest/clientes/{dni}: información de un cliente
          */
-        Route::get('/clientes/{dni}', function ($dni) {
+        Route::get('/{dni}', function ($dni) {
             return new ClienteResource(
                 User::role('Cliente')->where('dni', '=', $dni)->firstOrFail()
             );
@@ -113,7 +113,7 @@ Route::prefix('asocrest')->group(function () {
         /**
          * GET /asocrest/clientes/{dni}/pedidos: todos sus pedidos
          */
-        Route::get('/clientes/{dni}/pedidos', function ($dni) {
+        Route::get('/{dni}/pedidos', function ($dni) {
             $cliente = User::role('Cliente')->where('dni', '=', $dni)->firstOrFail();
             return PedidoResource::collection(Pedido::where('user_id', '=', $cliente->id)->paginate(5));
         });
@@ -121,7 +121,7 @@ Route::prefix('asocrest')->group(function () {
         /**
          * GET /asocrest/clientes/{dni}/pedidos/{id}: información de un pedido
          */
-        Route::get('/clientes/{dni}/pedidos/{id}', function ($dni, $id) {
+        Route::get('/{dni}/pedidos/{id}', function ($dni, $id) {
             $cliente = User::where('dni', '=', $dni)->firstOrFail();
             return new PedidoResource(
                 Pedido::where('user_id', '=', $cliente->id)
