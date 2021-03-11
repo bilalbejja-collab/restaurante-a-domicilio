@@ -8,7 +8,7 @@
 
                     @if ($plato->foto)
                         <img class="w-full h-80 object-cover object-center"
-                            src="{{ url('storage/' . $plato->foto->url) }}" alt="">
+                            src="{{ url('https://restaurante-a-domicilio-demo.s3.eu-west-3.amazonaws.com/' . $plato->foto->url) }}" alt="">
                     @else
                         <img class="w-full h-80 object-cover object-center"
                             src="https://cdn.pixabay.com/photo/2021/02/06/19/29/pancakes-5989136_1280.jpg" alt="">
