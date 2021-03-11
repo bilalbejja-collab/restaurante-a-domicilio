@@ -18,6 +18,8 @@ class PlatoSeeder extends Seeder
     {
         $platos = Plato::factory(20)->create();
 
+        // Comentado porqué estas imagenes no me sirven en heroku
+        /*
         foreach ($platos as $plato) {
             $imagen = Image::factory(1)->create([
                 'imageable_id' => $plato->id,
@@ -26,5 +28,6 @@ class PlatoSeeder extends Seeder
 
             //$plato->pedidos()->attach(rand(1, 4), ['cantidad' => 1]);
         }
+        */
     }
 }
