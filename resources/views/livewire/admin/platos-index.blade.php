@@ -9,11 +9,10 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Precio</th>
-                            <th>CategoriaID</th>
-                            <th>RestauranteID</th>
+                            <th>Categoria</th>
+                            <th>Restaurante</th>
                             <th colspan="2"></th>
                         </tr>
                     </thead>
@@ -21,11 +20,10 @@
                     <tbody>
                         @foreach ($platos as $plato)
                             <tr>
-                                <td>{{ $plato->id }}</td>
                                 <td>{{ $plato->nombre }}</td>
-                                <td>{{ $plato->precio }}</td>
-                                <td>{{ $plato->categoria_id }}</td>
-                                <td>{{ $plato->restaurante_id }}</td>
+                                <td>{{ $plato->precio }}€</td>
+                                <td>{{ App\Models\Plato::where('categoria_id', $plato->categoria_id)->first()->nombre }}</td>
+                                <td>{{ App\Models\Restaurante::where('id', $plato->restaurante_id)->first()->nombre }}</td>
                                 <td width="10px">
                                     <a class="btn btn-primary btn-sm"
                                         href="{{ route('admin.platos.edit', $plato) }}">Editar</a>

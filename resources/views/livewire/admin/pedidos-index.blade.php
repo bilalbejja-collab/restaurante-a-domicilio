@@ -9,11 +9,10 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Estado</th>
                             <th>Cantidad</th>
-                            <th>RestauranteID</th>
-                            <th>RepartidorID</th>
+                            <th>Restaurante</th>
+                            <th>Repartidor</th>
                             <th colspan="2"></th>
                         </tr>
                     </thead>
@@ -22,15 +21,15 @@
                         @foreach ($pedidos as $pedido)
                             @if ($pedido->repartidor_id == Auth::id() || Auth::user()->roles->first()->name == 'Admin')
                                 <tr>
-                                    <td>{{ $pedido->id }}</td>
                                     <td>{{ $pedido->estado }}</td>
                                     <td>{{ $pedido->platos[0]['pivot']['cantidad'] }}</td>
-                                    <td>{{ $pedido->restaurante_id }}</td>
+                                    <td>{{ App\Models\Restaurante::where('id', $pedido->restaurante_id)->first()->nombre }}
+                                    </td>
                                     <td>
                                         @if ($pedido->repartidor_id == '')
                                             No asignado
                                         @else
-                                            {{ $pedido->repartidor_id }}
+                                            {{ App\Models\User::where('id', $pedido->repartidor_id)->first()->name }}
                                         @endif
                                     </td>
                                     <td width="10px">

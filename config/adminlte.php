@@ -2,16 +2,16 @@
 
 $menu = [
     [
-        'text'        => 'Dashboard',
+        'text'        => 'Web Principal',
         'url'         => '/',
         'icon'        => 'fas fa-tachometer-alt fa-fw',
         'can' => 'admin.home',
     ],
 
-    ['header' => 'ADMINISTRADOR'],
+    ['header' => 'ADMINISTRAR'],
 
     [
-        'text'        => 'Users',
+        'text'        => 'Usuarios',
         'route'         => 'admin.users.index',
         'icon'        => 'fas fa-users fa-fw',
         'active' =>  ['admin/users*'],

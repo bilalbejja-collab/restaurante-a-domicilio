@@ -28,7 +28,6 @@
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
-                    <th>ID</th>
                     <th>Nombre</th>
                     <th colpsan="2"></th>
                 </thead>
@@ -36,7 +35,6 @@
                 <tbody>
                     @foreach ($categorias as $categoria)
                         <tr>
-                            <td>{{ $categoria->id }}</td>
                             <td>{{ $categoria->nombre }}</td>
                             <td width="10px">
                                 <a class="btn btn-primary btn-sm"

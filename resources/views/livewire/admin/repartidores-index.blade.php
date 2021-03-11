@@ -10,7 +10,6 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Apellidos</th>
                             <th>Teléfono</th>
@@ -23,11 +22,10 @@
                     <tbody>
                         @foreach ($repartidores as $repartidor)
                             <tr>
-                                <td>{{ $repartidor->id }}</td>
                                 <td>{{ $repartidor->name }}</td>
                                 <td>{{ $repartidor->lastname }}</td>
                                 <td>{{ $repartidor->movil }}</td>
-                                <td>{{ $repartidor->salario }}</td>
+                                <td>{{ $repartidor->salario }}€</td>
                                 <td>{{ $repartidor->estado }}</td>
                                 <td width="10px">
                                     <!--Mostrar el boton de editar repartidor solo si el usuario autenticado y el repartidor son la misma persona-->
