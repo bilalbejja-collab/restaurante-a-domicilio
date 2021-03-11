@@ -4,7 +4,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\PlatoController;
 use App\Http\Controllers\CarroController;
 use App\Http\Controllers\PedidoController;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 // Ruta para ver platos en la página principal
 Route::middleware(['auth:sanctum', 'verified'])->get('/', [PlatoController::class, 'index'])->name('platos.index');
@@ -30,3 +32,25 @@ Route::post('pedidos/borrar', [PedidoController::class, 'borrarPedido'])->name('
 
 // Ruta acerca de nosotros
 Route::get('acerca-de-nosotros', [Controller::class, 'acercaDeNosotros'])->name('acerca-de-nosotros');
+
+// Ruta para probar subir imagen a Amazon
+Route::get('/imagenes', function () {
+    $path = public_path('storage/platos');
+    $files = File::allFiles($path);
+    //$contents = Storage::get(public_path('storage/' . $plato->foto->url));
+
+    foreach ($files as $file) {
+        Storage::disk('s3')->put('platos/', $file);
+    }
+
+    //Storage::disk('s3')->put('platos/', fopen('storage/platos', 'r+'));
+
+    return view('fileUpload');
+});
+
+Route::post('upload', function () {
+    dd(request()->file('file')->store(
+        'my_file',
+        's3'
+    ));
+})->name('upload');

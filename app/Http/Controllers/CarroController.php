@@ -35,7 +35,8 @@ class CarroController extends Controller
             $plato->nombre,
             $plato->precio,
             1,
-            array("urlfoto" => "storage/" . $plato->foto->url)
+            //array("urlfoto" => "storage/" . $plato->foto->url)
+            array("urlfoto" => "https://restaurante-a-domicilio-demo.s3.eu-west-3.amazonaws.com/" . $plato->foto->url)
         );
         return back()->with(['info' => "\"$plato->nombre\" ¡se ha agregado con éxito al carrito de compra!", 'color' => 'green']);
     }
@@ -117,8 +118,7 @@ class CarroController extends Controller
     {
         $restaurante = Restaurante::where('id', $pedido->restaurante_id)->first();
 
-        //$data["email"] = $cliente->email;
-        $data["email"] = "bilalbejja2016@gmail.com";
+        $data["email"] = $cliente->email;
         $data["titulo"] = "CONFIRMACION DE COMPRA";
         $data["restaurante"] = $restaurante;
         $data["cliente"] = $cliente;

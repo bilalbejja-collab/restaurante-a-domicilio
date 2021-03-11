@@ -36,7 +36,7 @@ return [
     'pdf' => [
         'enabled' => true,
         // En heroku
-        'binary' => base_path('vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64'),
+        // 'binary' => base_path('vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64'),
         // En local
         'binary' => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf"',
         'timeout' => false,

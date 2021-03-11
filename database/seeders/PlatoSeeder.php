@@ -19,10 +19,11 @@ class PlatoSeeder extends Seeder
         $platos = Plato::factory(20)->create();
 
         foreach ($platos as $plato) {
-            Image::factory(1)->create([
+            $imagen = Image::factory(1)->create([
                 'imageable_id' => $plato->id,
                 'imageable_type' => Plato::class
             ]);
+
             //$plato->pedidos()->attach(rand(1, 4), ['cantidad' => 1]);
         }
     }
