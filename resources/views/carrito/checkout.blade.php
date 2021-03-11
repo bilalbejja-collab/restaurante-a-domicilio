@@ -55,6 +55,7 @@
                                         </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
                                         @foreach (Cart::getContent() as $plato)
+                                            {{ $plato }}
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">{{ $plato->id }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">{{ $plato->name }}</td>
