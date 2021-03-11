@@ -55,28 +55,9 @@
                                         </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
                                         @foreach (Cart::getContent() as $plato)
-                                            {{ $plato }}
+
                                             <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">{{ $plato->id }}</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">{{ $plato->name }}</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">{{ $plato->price }}</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $plato->quantity }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <img src="{{ $plato->image['urlfoto'] }}"
-                                                        style="width: 100px; height: 80px;"
-                                                        alt="{{ $plato->image['urlfoto'] }}">
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <form action="{{ route('carro.borrar') }}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{ $plato->id }}">
-                                                        <button type="submit" class="btn btn-link btn-sm text-danger">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
+                                                {{ $plato }}
                                             </tr>
                                         @endforeach
                                     </tbody>
