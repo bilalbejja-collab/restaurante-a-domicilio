@@ -121,4 +121,12 @@ class PedidoController extends Controller
 
         return redirect(route('admin.pedidos.index'))->with('info', 'El pedido se eliminó con éxito');
     }
+
+    /**
+     * Ver platos de este pedido
+     */
+    public function verPlatos(Pedido $pedido)
+    {
+        return view('admin.pedidos.platos', compact('pedido'));
+    }
 }

@@ -94,18 +94,19 @@ class CarroController extends Controller
         // Se crea el pedido
         $pedido = Pedido::create($request->all());
 
-        // Se guradan las lineas de pedidos
+        // Guardo los ids y cantidad de platos
+        $platos_data = [];
         foreach (Cart::getContent() as $plato) {
-            $pedido->platos()->attach(
-                $plato['id'],
-                ['cantidad' => $plato['quantity']]
-            );
+            $platos_data[$plato['id']] = ['cantidad' => $plato['quantity']];
         }
 
-        // Enviar email
+        // Asigno todos los platos al pedido correspondiente
+        $pedido->platos()->sync($platos_data);
+
+        // Envio email al cliente
         $this->enviarEmail($cliente, $pedido);
 
-        // Después de comprar limpio el carrito
+        // Después de hacer comprar limpio el carrito
         $this->limpiarCarro();
 
         return back()->with(['info' => 'Pedido realizado correctamente!', 'color' => 'green']);

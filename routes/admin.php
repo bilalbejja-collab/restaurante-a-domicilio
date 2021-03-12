@@ -26,3 +26,5 @@ Route::resource('platos', PlatoController::class)->except('show')->names('admin.
 Route::resource('repartidores', RepartidorController::class)->except('show')->names('admin.repartidores');
 
 Route::resource('pedidos', PedidoController::class)->except('show')->names('admin.pedidos');
+
+Route::get('pedidos/{pedido}/platos', [PedidoController::class, "verPlatos"])->name('admin.pedido.platos');

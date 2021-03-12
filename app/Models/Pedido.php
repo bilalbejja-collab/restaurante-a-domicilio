@@ -24,7 +24,7 @@ class Pedido extends Model
     //Relacion Uno a Muchos inversa
     public function repartidor()
     {
-        return $this->belongsTo(Repartidor::class);
+        return $this->belongsTo(User::class);
     }
 
     //Relacion Uno a Muchos inversa

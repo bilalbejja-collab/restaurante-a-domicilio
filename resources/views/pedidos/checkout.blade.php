@@ -35,19 +35,13 @@
                                             <tr>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    ID</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Estado</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Restaurante</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Plato</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Cantidad</th>
+                                                    Repartidor</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Accion</th>
@@ -57,14 +51,14 @@
 
                                         @foreach ($pedidos as $pedido)
                                             <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">{{ $pedido->id }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">{{ $pedido->estado }}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">{{ $pedido->restaurante->nombre }}
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ App\Models\Plato::where('id', $pedido->platos[0]->pivot['plato_id'])->first()->nombre }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    {{ $pedido->platos[0]->pivot['cantidad'] }}
+                                                    @if ($pedido->repartidor)
+                                                        {{ $pedido->repartidor->name }}
+                                                    @else
+                                                        No asignado
+                                                    @endif
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <form action="{{ route('pedidos.borrar') }}" method="post">
