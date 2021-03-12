@@ -21,7 +21,7 @@
                             <td>{{ $plato->precio }}€</td>
                             <td>{{ $plato->pivot['cantidad'] }}</td>
                             <td>
-                                {{ $plato->foto['urlfoto'] }}
+                                {{ $plato->foto }}
                                 {{-- <img src="{{ $plato->foto['urlfoto'] }}" alt="{{ $plato->foto['urlfoto'] }}" style="width: 100px; height: 80px;"> --}}
                             </td>
                         </tr>
