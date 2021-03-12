@@ -21,10 +21,7 @@
                             <td>{{ $plato->precio }}€</td>
                             <td>{{ $plato->pivot['cantidad'] }}</td>
                             <td>
-                                {{ $plato }}
-                                {{-- <img src="{{ $plato->attributes['urlfoto'] }}" style="width: 100px; height: 80px;"> --}}
-                                {{-- en local
-                                     <img src="{{ $plato->foto['urlfoto'] }}" style="width: 100px; height: 80px;"> --}}
+                                <img src="{{ $plato->foto['urlfoto'] }}" style="width: 100px; height: 80px;">
                             </td>
                         </tr>
                     @endforeach
